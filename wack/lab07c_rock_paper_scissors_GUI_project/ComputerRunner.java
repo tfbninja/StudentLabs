@@ -7,7 +7,7 @@ public class ComputerRunner {
 
     public static void main(String[] args) {
         //instantiate a new Computer named c
-
+        Computer c = new Computer();
         //call and print out getChoice()				//outs random choice
         System.out.println(c);								//outs pooter random choice
 
