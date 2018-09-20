@@ -30,6 +30,7 @@ public class TriangleRunner //this class is used to test Triangle
         test.calcPerimeter();
         test.calcArea();
         test.print();
+        System.out.println("\n\n");
 
 
         //ask for user input
@@ -42,15 +43,20 @@ public class TriangleRunner //this class is used to test Triangle
         System.out.print("Enter side C ::  ");
         c = keyboard.nextInt();
 
-
-        test.setSides(a, b, c);
-        test.calcPerimeter();
-        test.calcArea();
-        test.print();
-
+        test.dewIt(a, b, c); // this does all of the methods in order so you don't have to type it all everytime
+        System.out.println("\n\n");
 
         //add one more input section
-
+        System.out.print("Enter side A ::  ");
+        a = keyboard.nextInt();
+        
+        System.out.print("Enter side B ::  ");
+        b = keyboard.nextInt();
+        
+        System.out.print("Enter side C ::  ");
+        c = keyboard.nextInt();
+        
+        test.dewIt(a, b, c);
 
 
 

@@ -22,23 +22,37 @@ public class Triangle {
     }
 
     public Triangle(int a, int b, int c) {
+        sideA = a;
+        sideB = b;
+        sideC = c;
     }
 
     public void setSides(int a, int b, int c) {
+        sideA = a;
+        sideB = b;
+        sideC = c;
     }
 
     public void calcPerimeter() {
+        perimeter = sideA + sideB + sideC;
     }
 
     public void calcArea() {
         double s;
-
-
+        s = perimeter / 2.0;
+        theArea = Math.sqrt(s*(s-sideA)*(s-sideB)*(s-sideC));
     }
 
     public void print() {
 
 
-        System.out.println("\n\n");
+        System.out.println("\n" + sideA + " " + sideB + " " + sideC + "\nArea == " + theArea);
+    }
+    
+    public void dewIt(int a, int b, int c){
+        setSides(a, b, c);
+        calcPerimeter();
+        calcArea();
+        print();
     }
 }
