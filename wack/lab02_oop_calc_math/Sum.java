@@ -21,6 +21,6 @@ public class Sum {
     }
 
     public void print() {
-        System.out.println(one + " + " + two + " = " + sum);
+        System.out.println(one + " + " + two + " == " + sum);
     }
 }
