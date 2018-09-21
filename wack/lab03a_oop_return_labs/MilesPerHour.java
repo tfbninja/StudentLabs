@@ -21,14 +21,28 @@ public class MilesPerHour {
     }
 
     public MilesPerHour(int dist, int hrs, int mins) {
+        distance = dist;
+        hours = hrs;
+        minutes = mins;
     }
 
     public void setNums(int dist, int hrs, int mins) {
+        distance = dist;
+        hours = hrs;
+        minutes = mins;
+    }
+    public void calcMPH() {
+        mph = distance / (hours + (minutes/60.0));
     }
 
-    public void calcMPH() {
-    }
 
     public void print() {
+        System.out.println(distance + " miles in " + hours + " hour and " + minutes + " minutes = " + mph + "MPH.");
+    }
+    
+    public void dewIt(int dist, int hrs, int mins){
+        setNums(dist, hrs, mins);
+        calcMPH();
+        print();
     }
 }
