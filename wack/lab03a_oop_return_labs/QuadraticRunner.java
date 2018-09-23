@@ -12,16 +12,18 @@ import static java.lang.Math.*;
 public class QuadraticRunner {
 
     public static void main(String[] args) {
-        int a, b, c;
+        //add test cases
+        Scanner keyboard = new Scanner(System.in);
         Quadratic test = new Quadratic();
+        int a, b, c;
 
         for (int i = 0; i <= 2; i++) {
-
-            Scanner keyboard = new Scanner(System.in);
             System.out.print("Enter a :: ");
             a = keyboard.nextInt();
+
             System.out.print("Enter b :: ");
             b = keyboard.nextInt();
+
             System.out.print("Enter c :: ");
             c = keyboard.nextInt();
 
