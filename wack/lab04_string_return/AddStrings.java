@@ -14,15 +14,22 @@ public class AddStrings {
     private String sum;
 
     public AddStrings() {
+        first = "";
+        last = "";
     }
 
     public AddStrings(String one, String two) {
+        first = one;
+        last = two;
     }
 
     public void setStrings(String one, String two) {
+        first = one;
+        last = two;
     }
 
     public void add() {
+        sum = first + last;
     }
 
     public String toString() {
