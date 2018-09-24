@@ -33,7 +33,8 @@ public class AddStrings {
     }
 
     public String toString() {
-        String output = "";
+        String output = first + " " + last;
         return output;
     }
+    
 }
