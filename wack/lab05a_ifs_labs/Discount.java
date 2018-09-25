@@ -1,13 +1,11 @@
 package lab05a_ifs_labs;
 
-// A+ Computer Science  -  www.apluscompsci.com
-//Name - 
-//Date -
-//Class -
-//Lab  -
+import java.text.DecimalFormat;
 
-import static java.lang.System.*;
-import java.util.Scanner;
+/*
+ *
+ * @author Tim Barber
+*/
 
 public class Discount {
     //instance variables and constructors could be used, but are not really needed
@@ -15,6 +13,13 @@ public class Discount {
     //getDiscountedBill() will return final amount of the bill
     //			if the bill is >2000, the bill receives a 15% discount
     public static double getDiscountedBill(double bill) {
-        return 0;
+        DecimalFormat f = new DecimalFormat("##.00");
+        double prev = Double.parseDouble(f.format(bill));
+        double after = Double.parseDouble(f.format(bill * 0.85));
+        if (bill <= 2000) {
+            return prev;
+        } else {
+            return after;
+        }
     }
 }
