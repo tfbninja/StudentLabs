@@ -5,7 +5,6 @@ package lab04_string_return;
 //Date -
 //Class -
 //Lab  -
-
 import static java.lang.System.*;
 
 public class AddStrings {
@@ -29,12 +28,18 @@ public class AddStrings {
     }
 
     public void add() {
-        sum = first + last;
+        sum = first + " " + last;
     }
 
     public String toString() {
-        String output = first + " " + last;
-        return output;
+        //return first + " " + last;
+        return sum;
     }
-    
+
+    public void formatOutput() {
+        System.out.println("first :: " + first);
+        System.out.println("last :: " + last);
+        System.out.println("sum :: " + sum);
+    }
+
 }
