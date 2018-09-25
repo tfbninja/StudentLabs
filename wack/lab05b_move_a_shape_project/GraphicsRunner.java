@@ -17,14 +17,16 @@ public class GraphicsRunner extends Application {
 
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
-    private static Shape shape;
+    private static Shape sign;
     private static Canvas canvas;
 
     @Override
     public void start(Stage primaryStage) {
         RedrawTimer timer = new RedrawTimer();
 
-//        shape = new Shape();
+        sign = new Shape();
+        sign.setVars(100, 200, 300, "FF0000", 2, 2);
+        
         
         StackPane root = new StackPane();
 
@@ -54,9 +56,9 @@ public class GraphicsRunner extends Application {
 
         @Override
         public void handle(long now) {
-            shape.clear(canvas);
-            shape.draw(canvas);
-            shape.move();
+            sign.clear(canvas);
+            sign.draw(canvas);
+            sign.move();
         }
 
     }
