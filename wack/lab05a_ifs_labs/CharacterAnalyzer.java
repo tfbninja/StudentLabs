@@ -5,44 +5,71 @@ package lab05a_ifs_labs;
 //Date -
 //Class -
 //Lab  -
-
 import static java.lang.System.*;
 import java.util.Scanner;
 
 public class CharacterAnalyzer {
 
     private char theChar;
+    private int asciiValue;
 
     public CharacterAnalyzer() {
+        theChar = ' ';
+        asciiValue = -1;
     }
 
     public CharacterAnalyzer(char c) {
+        theChar = c;
+        asciiValue = (int) theChar;
     }
 
     public void setChar(char c) {
+        theChar = c;
+        asciiValue = (int) theChar;
     }
 
     public char getChar() {
-        return '-';
+        return theChar;
     }
 
     public boolean isUpper() {
-        return false;
+        if (asciiValue >= 65 && asciiValue <= 90) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public boolean isLower() {
-        return false;
+        if (asciiValue >= 97 && asciiValue <= 122) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public boolean isNumber() {
-        return false;
+        if (asciiValue >= 48 && asciiValue <= 57) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public int getASCII() {
-        return 0;
+        return asciiValue;
     }
 
     public String toString() {
-        return "" + getChar() + " is a lowercase character. ASCII == " + getASCII() + "\n";
+        if (isNumber() == true) {
+            return theChar + " is a number. ASCII == " + asciiValue + "\n";
+        } else if (isLower() == true) {
+            return theChar + " is a lowercase character. ASCII == " + asciiValue + "\n";
+        } else if (isUpper() == true) {
+            return theChar + " is an uppercase character. ASCII == " + asciiValue + "\n";
+        } else {
+            return theChar + " is neither a number nor a letter. ASCII == " + asciiValue + "\n";
+        }
+
     }
 }
