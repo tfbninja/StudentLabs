@@ -11,25 +11,32 @@ import static java.lang.System.*;
 public class Name {
 
     private String name;
+    private int space;
 
     public Name() {
+        name = "-1";
+        space = -1;
     }
 
     public Name(String s) {
+        name = s;
+        space = name.indexOf(" ");
     }
 
     public void setName(String s) {
+        name = s;
+        space = name.indexOf(" ");
     }
 
     public String getFirst() {
-        return "";
+        return name.substring(0,space);
     }
 
     public String getLast() {
-        return "";
+        return name.substring(space+1);
     }
 
     public String toString() {
-        return "";
+        return name;
     }
 }
