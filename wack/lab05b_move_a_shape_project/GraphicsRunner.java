@@ -12,20 +12,24 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.scene.shape.*;
 
 public class GraphicsRunner extends Application {
 
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
-    private static Shape sign;
+    private static StopSign sign;
+    private static StopSign sign2;
     private static Canvas canvas;
 
     @Override
     public void start(Stage primaryStage) {
         RedrawTimer timer = new RedrawTimer();
 
-        sign = new Shape();
-        sign.setVars(100, 200, 300, "FF0000", 2, 2);
+        sign = new StopSign();
+        sign.setVars(100, 200, 300, "FF0000", 6, 5);
+        sign2 = new StopSign();
+        sign2.setVars(300, 50, 200, "0000FF", 5, 6);
         
         
         StackPane root = new StackPane();
@@ -57,8 +61,13 @@ public class GraphicsRunner extends Application {
         @Override
         public void handle(long now) {
             sign.clear(canvas);
-            sign.draw(canvas);
+            sign.draw(canvas);        
+            sign.bounce(sign2);
             sign.move();
+            //sign2.clear(canvas);
+            sign2.draw(canvas);
+            sign2.bounce(sign);
+            sign2.move();
         }
 
     }
