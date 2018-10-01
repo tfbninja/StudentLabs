@@ -105,15 +105,6 @@ public class StopSign {
     public int getX() {
         return xPos;
     }
-    
-    public int getY(){
-        return yPos;
-    }
-    
-    public int setY(int y){
-        yPos = y;
-        return yPos;
-    }
 
     public int setXSpeed(int amt) {
         xSpeed = amt;
@@ -143,12 +134,8 @@ public class StopSign {
         return String.valueOf(xSpeed) + " " + ySpeed;
     }
 
-    public String getBounds() {
-        return "X:" + getX() + " Y:" + getY() + "R:" + size;
-    }
-    
-    public int bounce(){
-        String s = getBounds();
+    public void bounce(Shape entity) {
+        entity.
     }
 
     public String toString() {
