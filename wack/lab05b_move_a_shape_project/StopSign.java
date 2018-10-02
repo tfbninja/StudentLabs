@@ -133,11 +133,7 @@ public class StopSign {
     public String getSpeed() {
         return String.valueOf(xSpeed) + " " + ySpeed;
     }
-
-    public void bounce(Shape entity) {
-        entity.
-    }
-
+    
     public String toString() {
         return xPos + " " + yPos + " " + size + " " + color + " " + xSpeed + " " + ySpeed;
     }
