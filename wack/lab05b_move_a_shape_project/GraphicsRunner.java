@@ -61,12 +61,10 @@ public class GraphicsRunner extends Application {
         @Override
         public void handle(long now) {
             sign.clear(canvas);
-            sign.draw(canvas);        
-            sign.bounce(sign2);
+            sign.draw(canvas);
             sign.move();
             //sign2.clear(canvas);
             sign2.draw(canvas);
-            sign2.bounce(sign);
             sign2.move();
         }
 
