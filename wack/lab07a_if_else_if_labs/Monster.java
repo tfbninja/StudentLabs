@@ -1,46 +1,41 @@
 package lab07a_if_else_if_labs;
 
-// A+ Computer Science  -  www.apluscompsci.com
-//Name -
-//Date -
-//Class -
-//Lab  -
-
-import static java.lang.System.*;
-
 public class Monster {
 
     private String name;
     private int howBig;
 
     public Monster() {
+        name = "";
+        howBig = 0;
     }
 
     public Monster(String n, int size) {
+        name = n;
+        howBig = size;
     }
 
     public String getName() {
-        return "";
+        return name;
     }
 
     public int getHowBig() {
-        return 0;
+        return howBig;
     }
 
     public boolean isBigger(Monster other) {
-        return false;
+        return getHowBig() > other.getHowBig();
     }
 
     public boolean isSmaller(Monster other) {
-        //call isBigger() use !
-        return false;
+        return !isBigger(other);
     }
 
     public boolean namesTheSame(Monster other) {
-        return false;
+        return getName() == other.getName();
     }
 
     public String toString() {
-        return "";
+        return " - " + name + " " + howBig;
     }
 }
