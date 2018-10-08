@@ -5,28 +5,32 @@ package lab07a_if_else_if_labs;
 //Date -
 //Class -
 //Lab  -
-
-import static java.lang.System.*;
-
 public class MorseCode {
 
     private char letter;
+    private String[] morseLib = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".---.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..", "-----", ".----", "..---", "...--", "....-", ".....", "-....", "--...", "---..", "----."};
 
     public MorseCode() {
+        letter = ' ';
     }
 
     public MorseCode(char let) {
+        letter = Character.toUpperCase(let);
     }
 
     public void setChar(char let) {
+        letter = Character.toUpperCase(let);
     }
 
     public String getMorseCode() {
-        String morse = "";
-        return morse;
+        if (Character.isAlphabetic(letter)) {
+            return morseLib[(int) letter - 65];
+        } else {
+            return morseLib[(int) letter - 48 + 26];
+        }
     }
 
     public String toString() {
-        return letter + " is " + getMorseCode() + " in morse!\n";
+        return getMorseCode() + "\n" + letter + " is " + getMorseCode() + " in morse!\n";
     }
 }

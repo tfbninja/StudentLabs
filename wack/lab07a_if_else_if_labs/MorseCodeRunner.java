@@ -6,11 +6,28 @@ package lab07a_if_else_if_labs;
 //Class -
 //Lab  -
 
-import static java.lang.System.*;
-
 public class MorseCodeRunner {
 
     public static void main(String args[]) {
-        //add test cases	
+        MorseCode test = new MorseCode('A');
+        System.out.println(test);
+
+        test.setChar('B');
+        System.out.println(test);
+
+        test.setChar('3');
+        System.out.println(test);
+
+        test.setChar('Z');
+        System.out.println(test);
+
+        test.setChar('8');
+        System.out.println(test);
+
+        test.setChar('F');
+        System.out.println(test);
+
+        test.setChar('0');
+        System.out.println(test);
     }
 }
