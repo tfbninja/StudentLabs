@@ -34,6 +34,7 @@ public class MouseButtonTesterRunner extends Application {
                     test.paintLeft(event.getX(), event.getY());
                 }
                 if (event.isSecondaryButtonDown()) { //right mouse button
+                    test.paintRight(event.getX(), event.getY());
                     //call the method to draw something if the right mouse button is pressed
                 }
             }
