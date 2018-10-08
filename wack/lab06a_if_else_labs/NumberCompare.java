@@ -5,35 +5,46 @@ package lab06a_if_else_labs;
 //Date -
 //Class -
 //Lab  -
-
-import static java.lang.System.*;
-
 public class NumberCompare {
 
     private int one, two;
 
     public NumberCompare() {
+        one = -1;
+        two = -1;
     }
 
     public NumberCompare(int n1, int n2) {
+        one = n1;
+        two = n2;
     }
 
     public void setNums(int n1, int n2) {
+        one = n1;
+        two = n2;
     }
 
     public int getLargest() {
         if (one > two) {
             return one;
-        } else {
+        } else if (one < two) {
             return two;
+        } else {
+            return -1;
         }
     }
 
     public int getSmallest() {
-        return 0;
+        if (one < two) {
+            return one;
+        } else if (one > two) {
+            return two;
+        } else {
+            return -1;
+        }
     }
 
     public String toString() {
-        return "";
+        return one + " -- " + two + "\nlargest == " + getLargest() + "\nsmallest == " + getSmallest() + "\n\n";
     }
 }

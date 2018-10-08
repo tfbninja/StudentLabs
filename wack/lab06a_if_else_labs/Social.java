@@ -1,12 +1,6 @@
 package lab06a_if_else_labs;
 
-// A+ Computer Science  -  www.apluscompsci.com
-//Name -
-//Date -
-//Class -
-//Lab  - 
-
-import static java.lang.System.*;
+import java.util.regex.Pattern;
 
 public class Social {
 
@@ -14,19 +8,22 @@ public class Social {
     private int sum;
 
     public Social() {
+        socialNum = "";
     }
 
     public Social(String soc) {
+        socialNum = soc;
     }
 
     public void setWord(String w) {
+        socialNum = w;
     }
 
-    public void chopAndAdd() {
-        String sub = socialNum;
+    public int chopAndAdd() {
+        return sum = Pattern.compile("-").splitAsStream(socialNum).mapToInt(Integer::parseInt).sum();
     }
 
     public String toString() {
-        return "SS# " + socialNum + " has a total of " + sum + "\n";
+        return "SS# " + socialNum + " has a total of " + chopAndAdd() + "\n";
     }
 }
