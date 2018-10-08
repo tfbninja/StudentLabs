@@ -5,20 +5,24 @@ package lab06a_if_else_labs;
 //Date -
 //Class -
 //Lab  -
-
-import static java.lang.System.*;
-
 public class WordFunRunner {
 
     public static void main(String args[]) {
+        dewIt("Hello World");
+        dewIt("Jim Bob");
+        dewIt("Computer Science");
+        dewIt("UIL TCEA");
+        dewIt("State Champions");
+
+    }
+
+    public static void dewIt(String wd) {
         WordFun test = new WordFun("Hello World");
-        out.println(test);
+        test.setWord(wd);
+        System.out.println(test + "\n\n");
         test.makeUpper();
-        out.println(test);
+        System.out.println(test + "\n\n");
         test.addHyphen();
-        out.println(test);
-
-        //add more test cases
-
+        System.out.println(test + "\n\n");
     }
 }
