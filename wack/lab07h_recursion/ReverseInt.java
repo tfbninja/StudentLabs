@@ -13,13 +13,17 @@ package lab07h_recursion;
 public class ReverseInt {
 
     public static void main(String[] args) {
-        int number = 98989898;
+        int number = -68948;
         ReverseInt revIntObj = new ReverseInt();
+        System.out.println("original: " + number);
         System.out.println(revIntObj.revDigs(String.valueOf(number)));
     }
 
     public String revDigs(String num) {
         int halfpoint;
+        if (num.charAt(0) == '-'){
+            num = num.substring(1);
+        }
         if (num.length() % 2 == 0){
             halfpoint = num.length() / 2; // 0 indexed
         } else {
