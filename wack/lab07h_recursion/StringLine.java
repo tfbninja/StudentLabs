@@ -4,7 +4,7 @@
  *   Input:  It works!
  *   Output: !skrow tI
  */
-package your_package;
+package lab07h_recursion;
 
 /**
  *
@@ -20,9 +20,25 @@ public class StringLine {
     }
 
     public void printString(String word) {
-		//set up your base case
-		//do your recursion.  Print your letters here.  This is not a return method.
 
-       }
+        int len = word.length();
+        /*
+        int halfpoint;
+        if (word.length() <= 1){
+            return word;            
+        }
+        if (len % 2 == 0){
+            halfpoint = len / 2;
+        } else {
+            halfpoint = (len - 1) / 2;
+        }
+         */
+        String temp = String.valueOf(word.charAt(len-1));
+        if (len >= 2) {
+            temp += printString(word.substring(len - 2));
+        } else {
+            String temp = word;
+        }
+        System.out.print(temp);
+    }
 }
-   
