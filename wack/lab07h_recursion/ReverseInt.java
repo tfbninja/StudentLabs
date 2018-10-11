@@ -4,7 +4,7 @@
  *   Input:  752
  *   Output: 257
  */
-package your_package;
+package lab07h_recursion;
 
 /**
  *
@@ -13,14 +13,21 @@ package your_package;
 public class ReverseInt {
 
     public static void main(String[] args) {
-        int number = 752;
+        int number = 98989898;
         ReverseInt revIntObj = new ReverseInt();
-        revIntObj.revDigs(number);
+        System.out.println(revIntObj.revDigs(String.valueOf(number)));
     }
 
-    public void revDigs(int number) {
-
-
-       }
+    public String revDigs(String num) {
+        int halfpoint;
+        if (num.length() % 2 == 0){
+            halfpoint = num.length() / 2; // 0 indexed
+        } else {
+            halfpoint = (num.length()-1) / 2; // 0 indexed
+        }
+        if (num.length() <= 1){
+            return num;
+        }
+        return revDigs(num.substring(halfpoint)) + revDigs(num.substring(0, halfpoint));
+    }
 }
-   
