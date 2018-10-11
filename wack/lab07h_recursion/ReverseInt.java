@@ -13,11 +13,20 @@ package lab07h_recursion;
 public class ReverseInt {
 
     public static void main(String[] args) {
-        int number = 98989898;
+        int number = 123456789;
         ReverseInt revIntObj = new ReverseInt();
-        System.out.println(revIntObj.revDigs(String.valueOf(number)));
+        System.out.println(revIntObj.reverseDigits(number));
     }
 
+    public int reverseDigits(int num) {
+        if (num % 10 == num) {
+            return num;
+        } else if (num % 10 == 0){
+            return num;
+        }
+        return reverseDigits((num - (num % 10))*10) + reverseDigits((num % 10)*10);
+    }
+    /*
     public String revDigs(String num) {
         int halfpoint;
         if (num.length() % 2 == 0){
@@ -29,5 +38,5 @@ public class ReverseInt {
             return num;
         }
         return revDigs(num.substring(halfpoint)) + revDigs(num.substring(0, halfpoint));
-    }
+    } */
 }
