@@ -15,7 +15,7 @@ public class Numbers {
         int num = 6;
 
         Numbers numObj = new Numbers();
-        System.out.println("The sum of all numbers through " + num + "  == " + numObj.printNum(num));
+        System.out.println("The sum of all positive integers up to " + num + "  == " + numObj.printNum(num));
     }
     //Write the recursive method to sum of all of the integers from zero up to the number entered
 
