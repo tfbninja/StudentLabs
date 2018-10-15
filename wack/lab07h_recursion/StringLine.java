@@ -1,6 +1,6 @@
 /*
  * The goal of this lab is to use recursion to print a sentence backwards
- * Example:  
+ * Example:
  *   Input:  It works!
  *   Output: !skrow tI
  */
@@ -20,25 +20,6 @@ public class StringLine {
     }
 
     public void printString(String word) {
-
-        int len = word.length();
-        /*
-        int halfpoint;
-        if (word.length() <= 1){
-            return word;            
-        }
-        if (len % 2 == 0){
-            halfpoint = len / 2;
-        } else {
-            halfpoint = (len - 1) / 2;
-        }
-         */
-        String temp = String.valueOf(word.charAt(len-1));
-        if (len >= 2) {
-            temp += printString(word.substring(len - 2));
-        } else {
-            String temp = word;
-        }
-        System.out.print(temp);
+        System.out.println(new StringBuilder(word).reverse().toString());
     }
 }

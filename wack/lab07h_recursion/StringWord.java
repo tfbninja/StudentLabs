@@ -8,23 +8,25 @@
  *			 is
  *			 This
  */
-
-package your_package;
+package lab07h_recursion;
 
 /**
  *
  * @author wkranz
  */
 public class StringWord {
-    
-    public static void main(String[] args) {
-	//Instantiate your object
-	//Call the recursive method printStringWords to print the words
-    }
-       
- 
-       public void printStringWords(String word) {
 
-       }
+    public static void main(String[] args) {
+        //Instantiate your object
+        //Call the recursive method printStringWords to print the words
+        StringWord obj = new StringWord();
+        System.out.println(obj.printStringWords("This is a sentence."));
+    }
+
+    public String printStringWords(String word) {
+        if (!word.contains(' ')) {
+            return word;
+        }
+        return word.substring(word.lastIndexOf(" ")) + printStringWords(word.substring(0, word.lastIndexOf(" ")));
+    }
 }
-   
