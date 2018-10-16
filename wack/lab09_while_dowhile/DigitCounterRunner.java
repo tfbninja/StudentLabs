@@ -22,6 +22,6 @@ public class DigitCounterRunner {
     }
 
     public static void print(int num, int dig) {
-        System.out.println(num + " contains " + dig + " digits\n");
+        System.out.println(num + " contains " + dig + " digits");
     }
 }

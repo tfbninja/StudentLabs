@@ -5,7 +5,6 @@ package lab09_while_dowhile;
 //Date -
 //Class -
 //Lab  -
-
 import static java.lang.System.*;
 
 public class TenToAny {
@@ -13,8 +12,29 @@ public class TenToAny {
     private int base10;
     private int newBase;
 
-    //add constructors
-    //add a set method
+    public TenToAny() {
+        base10 = 0;
+        newBase = 0;
+    }
+
+    public TenToAny(int num, int base) {
+        this.base10 = num;
+        this.newBase = base;
+    }
+
+    public void setNum(int num) {
+        this.base10 = num;
+    }
+
+    public void setBase(int base) {
+        this.newBase = base;
+    }
+
+    public void set(int num, int base) {
+        this.base10 = num;
+        this.newBase = base;
+    }
+
     public String getNewNum() {
         String newNum = "";
         return newNum;
