@@ -11,6 +11,7 @@ public class TenToAny {
 
     private int base10;
     private int newBase;
+    private int newNum;
 
     public TenToAny() {
         base10 = 0;
@@ -35,9 +36,22 @@ public class TenToAny {
         this.newBase = base;
     }
 
-    public String getNewNum() {
-        String newNum = "";
+    public int getNewNum() {
+        int newNum = 0;
+        while (this.base10 > 0) {
+            newNum += this.base10 % 10 / this.newBase;
+            newNum /= 10;
+            this.base10 /= 10;
+        }
+        this.newNum = newNum;
         return newNum;
+
     }
     //add a toString method	
+
+    @Override
+    public String toString() {
+        getNewNum();
+        return this.base10 + " base 10 is " + this.newNum + " in base " + this.newBase;
+    }
 }
