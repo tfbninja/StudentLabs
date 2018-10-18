@@ -6,11 +6,18 @@ package lab09_while_dowhile;
 //Class -
 //Lab  -
 
-import static java.lang.System.*;
-
 public class StringRemoverRunner {
 
     public static void main(String args[]) {
-        //add test cases	
+        //add test cases
+        String[] testStrings = {"xR-MxR-MHelloxR-M", "sxsssxssxsxssexssxsesss", "fuxqwexqwertyxqwexqwertyrtyxqwertyrtyn"};
+        String[] testRemovals = {"R-M", "xs", "qwerty"};
+        int index = 0;
+        StringRemover tester = new StringRemover("", "");
+        for (String i : testStrings){
+            tester.setRemover(i, testRemovals[index]);
+            System.out.println(tester);
+            index++;
+        }
     }
 }

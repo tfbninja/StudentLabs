@@ -5,16 +5,14 @@ package lab09_while_dowhile;
 //Date -
 //Class -
 //Lab  -
-
-import static java.lang.System.*;
-
 public class LetterRemover {
 
     private String sentence;
     private char lookFor;
 
-    public LetterRemover() {
+    public LetterRemover(String sent, char remove) {
         //call set
+        setRemover(sent, remove);
     }
 
     //add in second constructor
@@ -25,10 +23,15 @@ public class LetterRemover {
 
     public String removeLetters() {
         String cleaned = sentence;
+        while (cleaned.indexOf(lookFor) > -1) {
+            int pos = cleaned.indexOf(lookFor);
+            //System.out.println(pos); //debug
+            cleaned = cleaned.substring(0, pos) + cleaned.substring(pos + 1);
+        }
         return cleaned;
     }
 
     public String toString() {
-        return sentence + " - letter to remove " + lookFor;
+        return sentence + " - letter to remove " + lookFor + "\n" + removeLetters();
     }
 }

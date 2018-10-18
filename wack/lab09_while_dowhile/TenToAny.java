@@ -5,13 +5,11 @@ package lab09_while_dowhile;
 //Date -
 //Class -
 //Lab  -
-import static java.lang.System.*;
-
 public class TenToAny {
 
     private int base10;
     private int newBase;
-    private int newNum;
+    private String newNum;
 
     public TenToAny() {
         base10 = 0;
@@ -36,16 +34,41 @@ public class TenToAny {
         this.newBase = base;
     }
 
-    public int getNewNum() {
-        int newNum = 0;
-        while (this.base10 > 0) {
-            newNum += this.base10 % 10 / this.newBase;
-            newNum /= 10;
-            this.base10 /= 10;
+    public String getNewNum() {
+        String newNum = "";
+        int temp = this.base10;
+        while (temp > 0) {
+            newNum += temp % this.newBase;
+            temp /= this.newBase;
         }
-        this.newNum = newNum;
-        return newNum;
+        this.newNum = revStr(tryBase16(newNum));
+        return this.newNum;
 
+    }
+
+    public String revStr(String str) {
+        String temp = "";
+        while (str.length() > 0) {
+            temp = str.charAt(0) + temp;
+            str = str.substring(1);
+        }
+        return temp;
+    }
+
+    public String tryBase16(String num) {
+        String temp = "";
+        String builder = "";
+        for (int i = 0; i < num.length(); i++) {
+            temp += num.charAt(i);
+            builder += num.charAt(i);
+            if (temp.length() == 2 && Integer.valueOf(temp) > 9 && Integer.valueOf(temp) <= this.newBase) {
+                builder = builder.substring(0, builder.length() - 2);
+                builder += (char) (Integer.valueOf(temp) + 55);
+                temp = "";
+            }
+
+        }
+        return builder;
     }
     //add a toString method	
 

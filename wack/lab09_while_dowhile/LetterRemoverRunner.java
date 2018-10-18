@@ -6,11 +6,19 @@ package lab09_while_dowhile;
 //Class -
 //Lab  -
 
-import static java.lang.System.*;
-
 public class LetterRemoverRunner {
 
     public static void main(String args[]) {
-        //add test cases		
+        //add test cases
+        String[] testStrings = {"I am Sam I am", "ssssssssxssssesssssesss", "qwertyqwertyqwerty", "abababababa","abaababababa"};
+        char[] testChars = {'a', 's', 'a', 'b', 'x'};
+        LetterRemover tester = new LetterRemover(" ", ' ');
+        int index = 0;
+        for (String i : testStrings){
+            tester.setRemover(i, testChars[index]);
+            tester.removeLetters();
+            System.out.println(tester);
+            index++;
+        }
     }
 }
