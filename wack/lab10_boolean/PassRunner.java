@@ -5,7 +5,6 @@ package lab10_boolean;
 //Date -
 //Class -
 //Lab  -
-
 public class PassRunner {
 
     public static void main(String args[]) {
