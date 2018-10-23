@@ -5,7 +5,6 @@ package lab10_boolean;
 //Date -  
 //Class -
 //Lab  -
-
 import static java.lang.System.*;
 
 public class BiggestDouble {
@@ -17,16 +16,29 @@ public class BiggestDouble {
     }
 
     public BiggestDouble(double a, double b, double c, double d) {
+        setDoubles(a, b, c, d);
     }
 
     public void setDoubles(double a, double b, double c, double d) {
+        this.one = a;
+        this.two = b;
+        this.three = c;
+        this.four = d;
     }
 
     public double getBiggest() {
-        return 0.0;
+        if (this.one > this.two && this.one > this.three && this.one > this.four) {
+            return this.one;
+        } else if (this.two > this.one && this.two > this.three && this.two > this.four) {
+            return this.two;
+        } else if (this.three > this.one && this.three > this.two && this.three > this.four) {
+            return this.three;
+        }
+        return this.four;
+
     }
 
     public String toString() {
-        return "";
+        return this.one + ", " + this.two + ", " + this.three + ", " + this.four;
     }
 }
