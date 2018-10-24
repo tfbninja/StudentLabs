@@ -6,7 +6,6 @@ package lab10_boolean;
 //Class -
 //Lab  -
 import java.util.Scanner;
-import static java.lang.System.*;
 
 public class GuessingGame {
 
@@ -51,6 +50,12 @@ public class GuessingGame {
         this.runs++;
         this.wrongPercent *= (double) ((guesses-1) / (double)guesses);
         System.out.println("You guessed wrong " + Math.round(this.wrongPercent*100) + " percent of the time");
+
+        System.out.print("Do you want to play again? ");
+        boolean again = keyboard.next().substring(0,1).toLowerCase().equals("y");
+        if (again){
+            playGame();
+        }
 
     }
 
