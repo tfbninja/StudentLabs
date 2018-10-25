@@ -1,20 +1,16 @@
-package lab10_boolean_Board.sols;
+package lab10_boolean_Board;
 
 // A+ Computer Science  -  www.apluscompsci.com
-
 import javafx.scene.canvas.Canvas;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 
 //Name -
 //Date -
 //Lab  - BlockTestTwo 
-
 public class BlockTestTwo {
 
     private Canvas canvas;
 
-    
     public BlockTestTwo(int width, int height) {
         canvas = new Canvas(width, height);
     }
@@ -31,10 +27,10 @@ public class BlockTestTwo {
 
         Block four = new Block(450, 50, 20, 60, Color.GREEN);
         four.draw(canvas);
-        
+
         //add more test cases
     }
-    
+
     public Canvas getCanvas() {
         return canvas;
     }

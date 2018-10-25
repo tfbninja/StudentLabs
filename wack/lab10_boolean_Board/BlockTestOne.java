@@ -1,4 +1,4 @@
-package lab10_boolean_Board.sols;
+package lab10_boolean_Board;
 
 // A+ Computer Science  -  www.apluscompsci.com
 //Name -
