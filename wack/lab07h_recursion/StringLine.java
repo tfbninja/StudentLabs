@@ -20,6 +20,11 @@ public class StringLine {
     }
 
     public void printString(String word) {
-        System.out.println(new StringBuilder(word).reverse().toString());
+        if (word.length() < 2) {
+            System.out.print(word);
+        } else {
+            printString(word.substring(1));
+            printString(word.substring(0,1));
+        }
     }
 }

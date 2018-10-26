@@ -20,13 +20,15 @@ public class StringWord {
         //Instantiate your object
         //Call the recursive method printStringWords to print the words
         StringWord obj = new StringWord();
-        System.out.println(obj.printStringWords("This is a sentence."));
+        obj.printStringWords("This is a sentence");
     }
 
-    public String printStringWords(String word) {
-        if (!word.contains(' ')) {
-            return word;
+    public void printStringWords(String word) {
+        if (word.contains(" ")) {
+            printStringWords(word.substring(word.lastIndexOf(" ") + 1));
+            printStringWords(word.substring(0, word.lastIndexOf(" ")));
+        } else {
+            System.out.println(word);
         }
-        return word.substring(word.lastIndexOf(" ")) + printStringWords(word.substring(0, word.lastIndexOf(" ")));
     }
 }

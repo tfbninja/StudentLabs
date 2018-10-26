@@ -13,11 +13,16 @@ package lab07h_recursion;
 public class ReverseInt {
 
     public static void main(String[] args) {
-        int number = 123;
-        System.out.println(reverseDigits(number));
+        int number = 457;
+        reverseDigits(number);
     }
 
     public static int reverseDigits(int num) {
-        return Integer.valueOf(new StringBuilder(String.valueOf(num)).reverse().toString()); // :)
+        if (num < 10){
+            System.out.print(num);
+            return num;
+        }
+        System.out.print(num % 10);
+        return reverseDigits(num / 10);
     }
 }
