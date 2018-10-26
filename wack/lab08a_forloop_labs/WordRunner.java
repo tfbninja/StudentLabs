@@ -5,12 +5,14 @@ package lab08a_forloop_labs;
 //Date -
 //Class -
 //Lab  -
-
-import static java.lang.System.*;
-
 public class WordRunner {
 
     public static void main(String[] args) {
-        //add test cases		
+        String[] tests = {"Hello", "World", "JukeBox", "TCEA", "UIL"};
+        Word tester = new Word();
+        for (String test : tests) {
+            tester.setString(test);
+            System.out.println(tester + "\n");
+        }
     }
 }

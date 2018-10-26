@@ -5,9 +5,6 @@ package lab08a_forloop_labs;
 //Date -
 //Class -
 //Lab  -
-
-import static java.lang.System.*;
-
 public class MultTable {
 
     private int number;
@@ -18,11 +15,27 @@ public class MultTable {
     }
 
     public MultTable(int num, int end) {
+        this.number = num;
+        this.stop = end;
     }
 
     public void setTable(int num, int end) {
+        this.number = num;
+        this.stop = end;
     }
 
-    public void printTable() {
+    public String printTable() {
+        String output = "multiplication table for " + this.number + "\n";
+        int index = 1;
+        for (int i = this.number; i <= this.stop * this.number; i += this.number) {
+            output += index + "    " + i + "\n";
+            index++;
+        }
+        return output;
+    }
+
+    @Override
+    public String toString() {
+        return printTable();
     }
 }

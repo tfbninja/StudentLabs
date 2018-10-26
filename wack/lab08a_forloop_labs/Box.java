@@ -5,23 +5,27 @@ package lab08a_forloop_labs;
 //Date -
 //Class -
 //Lab  -
-
-import static java.lang.System.*;
-
 public class Box {
 
     private String word;
 
     public Box() {
+        word = "";
     }
 
     public Box(String s) {
+        word = s;
     }
 
     public void setWord(String s) {
         word = s;
     }
 
-    public void print() {
+    public String print() {
+        String output = "";
+        for (int i = 0; i < this.word.length(); i++) {
+            output += this.word + "\n";
+        }
+        return output;
     }
 }

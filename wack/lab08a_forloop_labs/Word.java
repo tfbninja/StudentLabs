@@ -1,40 +1,36 @@
 package lab08a_forloop_labs;
 
-// A+ Computer Science  -  www.apluscompsci.com
-//Name -
-//Date -
-//Class -
-//Lab  -
-
-import static java.lang.System.*;
-
 public class Word {
 
     private String word;
 
     public Word() {
+        this.word = "";
     }
 
     public Word(String s) {
+        this.word = s;
     }
 
     public void setString(String s) {
+        this.word = s;
     }
 
     public char getFirstChar() {
-        return 0;
+        return this.word.charAt(0);
     }
 
     public char getLastChar() {
-        return 0;
+        return this.word.charAt(this.word.length() - 1);
     }
 
     public String getBackWards() {
-        String back = "";
-        return back;
+        StringBuilder back = new StringBuilder(this.word);
+        return back.reverse().toString();
     }
 
+    @Override
     public String toString() {
-        return "";
+        return getFirstChar() + "\n" + getLastChar() + "\n" + getBackWards() + "\n" + this.word;
     }
 }

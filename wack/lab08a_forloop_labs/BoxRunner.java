@@ -5,12 +5,14 @@ package lab08a_forloop_labs;
 //Date -
 //Class -
 //Lab  -
-
-import static java.lang.System.*;
-
 public class BoxRunner {
 
     public static void main(String[] args) {
-        //add test cases		
+        Box tester = new Box();
+        String[] tests = {"hippo", "abcd", "it", "a", "chicken"};
+        for (String i : tests) {
+            tester.setWord(i);
+            System.out.println(tester.print());
+        }
     }
 }

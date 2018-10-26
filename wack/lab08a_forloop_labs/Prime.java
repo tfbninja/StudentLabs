@@ -5,43 +5,38 @@ package lab08a_forloop_labs;
 //Date -
 //Class -
 //Lab  -
-
-import static java.lang.System.*;
-import java.lang.Math;
-
 public class Prime {
 
     private int number;
 
     public Prime() {
+        this.number = 0;
     }
 
     public Prime(int num) {
+        this.number = num;
     }
 
     public void setPrime(int num) {
+        this.number = num;
     }
 
     public boolean isPrime() {
-
-
-
-
-
-
+        for (int i = 2; i < this.number; i++) {
+            if (this.number % i == 0) {
+                return false;
+            }
+        }
 
         return true;
     }
 
     public String toString() {
-        String output = "";
-
-
-
-
-
-
-
+        String output = this.number + " is ";
+        if (!isPrime()) {
+            output += "not ";
+        }
+        output += "prime.";
         return output;
     }
 }

@@ -5,12 +5,14 @@ package lab08a_forloop_labs;
 //Date -
 //Class -
 //Lab  -
-
-import static java.lang.System.*;
-
 public class LoopStatsRunner {
 
     public static void main(String[] args) {
-        //add test cases		
+        LoopStats tester = new LoopStats();
+        int[] tests = {1, 5, 2, 8, 5, 15};
+        for (int i = 0; i < tests.length; i += 2) {
+            tester.setNums(tests[i], tests[i + 1]);
+            System.out.println(tester + "\n");
+        }
     }
 }

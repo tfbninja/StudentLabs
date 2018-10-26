@@ -5,13 +5,14 @@ package lab08a_forloop_labs;
 //Date -
 //Class -
 //Lab  -
-
-import static java.lang.System.*;
-import java.lang.Math;
-
 public class PrimeRunner {
 
     public static void main(String[] args) {
-        //add test cases
+        int[] tests = {24, 7, 100, 113, 65535, 2, 7334, 7919, 1115125003};
+        Prime tester = new Prime();
+        for (int i : tests) {
+            tester.setPrime(i);
+            System.out.println(tester + "\n");
+        }
     }
 }

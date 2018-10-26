@@ -6,11 +6,14 @@ package lab08a_forloop_labs;
 //Class -
 //Lab  -
 
-import static java.lang.System.*;
-
 public class TriangleOneRunner {
 
     public static void main(String[] args) {
-        //add test cases		
+        TriangleOne tester = new TriangleOne();
+        String[] tests = {"hippo", "abcd", "it", "a", "chicken"};
+        for (String test : tests) {
+            tester.setWord(test);
+            System.out.println(tester);
+        }
     }
 }

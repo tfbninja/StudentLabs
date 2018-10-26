@@ -5,35 +5,31 @@ package lab08a_forloop_labs;
 //Date -
 //Class -
 //Lab  -
-
-import static java.lang.System.*;
-
 public class Factorial {
 
     private int number;
 
     public Factorial() {
+        this.number = 0;
     }
 
     public Factorial(int num) {
+        this.number = num;
     }
 
     public void setNum(int num) {
+        this.number = num;
     }
 
     public int getNum() {
-        return 0;
+        return this.number;
     }
 
     public long getFactorial() {
         long factorial = 1;
-
-
-
-
-
-
-
+        for (int i = 1; i <= this.number; i++) {
+            factorial *= i;
+        }
         return factorial;
     }
 

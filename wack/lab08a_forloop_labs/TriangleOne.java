@@ -1,12 +1,8 @@
 package lab08a_forloop_labs;
-
-// A+ Computer Science  -  www.apluscompsci.com
 //Name -
 //Date -
 //Class -
 //Lab  -
-
-import static java.lang.System.*;
 
 public class TriangleOne {
 
@@ -17,11 +13,19 @@ public class TriangleOne {
     }
 
     public TriangleOne(String s) {
+        this.word = s;
     }
 
     public void setWord(String s) {
+        this.word = s;
     }
 
     public String toString() {
+        StringBuilder output = new StringBuilder();
+        for (int i = this.word.length(); i > 0; i--) {
+            output.append(this.word.substring(0, i));
+            output.append("\n");
+        }
+        return output.toString();
     }
 }
