@@ -35,11 +35,35 @@ public class Board {
     //initialization constructor
 
     public void drawBlocks() {
+
         topLeft.draw(canvas);
         topRight.draw(canvas);
         botLeft.draw(canvas);
         botRight.draw(canvas);
         System.out.println(topLeft.getColor());
+    }
+
+    public boolean isColor(Block block, Color color) {
+        if (block.getColor() == color) {
+            return true;
+        }
+        return false;
+    }
+
+    public Block getTopLeft() {
+        return this.topLeft;
+    }
+
+    public Block getTopRight() {
+        return this.topRight;
+    }
+
+    public Block getBotLeft() {
+        return this.botLeft;
+    }
+
+    public Block getBotRight() {
+        return this.botRight;
     }
 
     public void swapTopRowColors() {
@@ -112,8 +136,9 @@ public class Board {
         }
     }
 
+    @Override
     public String toString() {
-        return " ";
+        return "top left: [" + topLeft + "], top right: [" + topRight + "], bottom left: [" + botLeft + "], bottom right:[" + botRight + "]";
     }
 
     public Canvas getCanvas() {

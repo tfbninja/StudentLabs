@@ -9,6 +9,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Tester extends Application {
@@ -31,10 +32,16 @@ public class Tester extends Application {
 
         Scene scene = new Scene(root, WIDTH, HEIGHT);
         stage.setScene(scene);
+        stage.setTitle("Switch the colors!");
         stage.show();
         scene.setOnMousePressed(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
                 board.mouseClicked(event);
+                if (board.isColor(board.getTopLeft(), Color.RED) && board.isColor(board.getTopRight(), Color.GREEN) && board.isColor(board.getBotLeft(), Color.BLUE) && board.isColor(board.getBotRight(), Color.YELLOW)) {
+                    stage.setTitle("Its the Windows logo!");
+                } else {
+                    stage.setTitle("Not Quite..");
+                }
             }
         });
     }
