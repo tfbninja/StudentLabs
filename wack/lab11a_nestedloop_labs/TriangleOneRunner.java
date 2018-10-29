@@ -5,7 +5,6 @@ package lab11a_nestedloop_labs;
 //Date -
 //Class -
 //Lab  -
-
 import static java.lang.System.*;
 import java.util.Scanner;
 
@@ -24,7 +23,7 @@ public class TriangleOneRunner {
             System.out.println(TriangleOne.createTriangle(value, big));
 
             System.out.print("Do you want to enter more data? ");
-            choice = keyboard.next();
-        } while (choice.equals("Y") || choice.equals("y"));
+            choice = keyboard.next().substring(0, 1).toLowerCase();
+        } while (choice.equals("y"));
     }
 }
