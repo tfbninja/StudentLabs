@@ -33,7 +33,8 @@ public class TriangleFive {
         for (int i = 0; i < this.amount; i++) {
             for (int count = this.amount; count > i; count--) {
                 for (int square = 0; square < count; square++) {
-                    output += (char) (((this.letter + (this.amount - count)) % 26) + 65);
+                    // lots of modulos xD
+                    output += (char) (65 + (((this.letter - 65) % 26) + this.amount - count) % 26);
                 }
                 output += " ";
             }

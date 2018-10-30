@@ -1,4 +1,5 @@
 package lab11a_nestedloop_labs;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -16,7 +17,7 @@ import javafx.stage.Stage;
  *
  * @author wkranz
  */
-public class GraphicsRunner extends Application {
+public class GraphicsRunnerRandom extends Application {
 
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
@@ -31,7 +32,7 @@ public class GraphicsRunner extends Application {
         root.getChildren().add(canvas);
 
         shape = new RandomColoredBoxes();
-        
+
         Scene scene = new Scene(root, WIDTH, HEIGHT);
 
         primaryStage.setTitle("Drawing Boxes");
@@ -47,6 +48,7 @@ public class GraphicsRunner extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
     public class RedrawTimer extends AnimationTimer { //added for animation lab05
 
         @Override
@@ -56,5 +58,5 @@ public class GraphicsRunner extends Application {
         }
 
     }
-    
+
 }
