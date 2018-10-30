@@ -1,13 +1,5 @@
 package lab11a_nestedloop_labs;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
-
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -15,18 +7,28 @@ import javafx.scene.text.Font;
 
 /**
  *
- * @author wkranz
+ * @author Tim Barber
  */
 public class ColoredBoxes {
-    
+
     public void draw(Canvas canvas) {
         GraphicsContext graphics = canvas.getGraphicsContext2D();
-        graphics.setStroke(Color.RED);
-        graphics.setFont(new Font("Tahoma",16));
-        graphics.strokeText("Drawing boxes with nested loops", 20, 40);
-		
-		//nested loop to draw colored boxes
-        
+        graphics.setFill(Color.RED);
+        graphics.setFont(new Font("Tahoma", 16));
+        graphics.fillText("Drawing boxes with nested loops", 20, 40);
+        graphics.setFill(Color.BLUE);
+
+        int startX = 40;
+        int startY = 50;
+        int margin = 5;
+        int size = 15;
+
+        for (int row = 0; row < 9; row++) {
+            for (int column = 0; column < 9; column++) {
+                graphics.fillRect(startX + (column * (margin + size)), startY + (row * (margin + size)), size, size);
+            }
+        }
+
     }
-    
+
 }

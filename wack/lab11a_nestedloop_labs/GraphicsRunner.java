@@ -5,7 +5,6 @@ package lab11a_nestedloop_labs;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -14,7 +13,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author wkranz
+ * @author Tim Barber
  */
 public class GraphicsRunner extends Application {
 
@@ -30,7 +29,7 @@ public class GraphicsRunner extends Application {
         root.getChildren().add(canvas);
 
         new ColoredBoxes().draw(canvas);
-        
+
         Scene scene = new Scene(root, WIDTH, HEIGHT);
 
         primaryStage.setTitle("Drawing Boxes");
@@ -46,5 +45,4 @@ public class GraphicsRunner extends Application {
         launch(args);
     }
 
-    
 }
