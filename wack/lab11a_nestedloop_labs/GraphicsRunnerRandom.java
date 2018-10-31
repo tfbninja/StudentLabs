@@ -53,7 +53,7 @@ public class GraphicsRunnerRandom extends Application {
         @Override
         public void handle(long now) {
             //shape.clear(canvas);
-            shape.drawRandom(canvas, 25, 25);
+            shape.drawRandom(canvas, 1, 1);
         }
 
     }

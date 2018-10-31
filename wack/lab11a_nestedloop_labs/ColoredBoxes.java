@@ -55,8 +55,8 @@ public class ColoredBoxes {
         int margin = 1;
         int size = 20;
 
-        for (int row = 0; row < numX; row++) {
-            for (int column = 0; column < numY; column++) {
+        for (int row = 0; row < numY; row++) {
+            for (int column = 0; column < numX; column++) {
                 graphics.setFill(randomColor());
                 graphics.fillRect(startX + (column * (margin + size)), startY + (row * (margin + size)), size, size);
             }
