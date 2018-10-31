@@ -5,7 +5,6 @@ package lab11a_nestedloop_labs;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -22,7 +21,7 @@ public class GraphicsRunnerRandom extends Application {
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
     private static Canvas canvas;
-    private RandomColoredBoxes shape;
+    private ColoredBoxes shape;
 
     @Override
     public void start(Stage primaryStage) {
@@ -31,7 +30,7 @@ public class GraphicsRunnerRandom extends Application {
         canvas = new Canvas(WIDTH, HEIGHT);
         root.getChildren().add(canvas);
 
-        shape = new RandomColoredBoxes();
+        shape = new ColoredBoxes();
 
         Scene scene = new Scene(root, WIDTH, HEIGHT);
 
@@ -53,8 +52,8 @@ public class GraphicsRunnerRandom extends Application {
 
         @Override
         public void handle(long now) {
-            shape.clear(canvas);
-            shape.draw(canvas);
+            //shape.clear(canvas);
+            shape.drawRandom(canvas, 25, 25);
         }
 
     }
