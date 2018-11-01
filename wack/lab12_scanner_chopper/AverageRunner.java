@@ -16,7 +16,8 @@ public class AverageRunner {
 
         for (String test : tests) {
             tester.setLine(test);
-            System.out.println(tester);
+            System.out.println(test);
+            System.out.println(tester + "\n");
         }
     }
 }
