@@ -9,9 +9,7 @@ public class TriangleThreeRunner {
 
     public static void main(String args[]) {
         int[] tests = {3, 7, 1, 5, 4};
-        String[] testStrings = {"|", "|", "|", "|", "|"};
-        // I changed these because on my netbeans the font isn't monospaced,
-        // and the letters look spaced wrong, even though it's correct.
+        String[] testStrings = {"A", "X", "R", "T", "W"};
         TriangleThree tester = new TriangleThree();
         int index = 0;
         for (String test : testStrings) {

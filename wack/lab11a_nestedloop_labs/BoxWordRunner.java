@@ -8,7 +8,7 @@ package lab11a_nestedloop_labs;
 public class BoxWordRunner {
 
     public static void main(String args[]) {
-        String[] tests = {"SQUARE", "BOX", "A", "IT", "TOAD", "MCHAMMERGOHAMMER", "YaYeet"};
+        String[] tests = {"SQUARE", "BOX", "A", "IT", "TOAD", "MCHAMMERGOHAMMER"};
         BoxWord tester = new BoxWord();
         for (String test : tests) {
             tester.setWord(test);
