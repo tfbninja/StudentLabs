@@ -6,51 +6,49 @@ package lab12_scanner_chopper;
 //Class - 
 //Lab  -
 import java.util.Scanner;
+import java.util.ArrayList;
 import static java.lang.System.*;
 
 public class Average {
 
     private String line;
     private int sum = 0;
-    private int[] nums;
+    private ArrayList<Integer> nums;
 
     public Average() {
         this.line = "";
+        this.nums = new ArrayList<>();
     }
 
     public Average(String s) {
         this.line = s;
+        this.nums = new ArrayList<>();
     }
 
     public void setLine(String s) {
         this.line = s;
+        this.nums = new ArrayList<>();
     }
 
-    public int getCount() {
-        this.nums = new int[this.line.length()];
-        this.sum = 0;
-        int count = 0;
-        String[] numStrs = this.line.split(" ");
-        int index = 0;
-        for (String temp : numStrs) {
-            if (!temp.equals("0")) {
-                this.nums[index] = Integer.valueOf(temp);
-                index++;
-            }
+    public int getCount() { // and set sum
+        Scanner chopper = new Scanner(this.line); // method used in class on the powerpoint
+        int count = 0; // incrementer
+        int tempSum = 0;
+        while (chopper.hasNextInt()) {
+            count++;
+            nums.add(tempSum += chopper.nextInt());
         }
-
-        for (int i : this.nums) {
-            System.out.println("num: " + i);
-            this.sum += i;
-        }
-        count = this.nums.length;
-        System.out.println("sum: " + this.sum);
-        System.out.println("count: " + count);
+        this.sum = tempSum;
         return count;
     }
 
-    public int getSum() {
-        return this.sum;
+    public int getSum() { // and set sum
+        Scanner chopper = new Scanner(this.line); // method used in class on the powerpoint
+        int tempSum = 0;
+        while (chopper.hasNextInt()) {
+            tempSum += chopper.nextInt();
+        }
+        return this.sum = tempSum;
     }
 
     public double getAverage() {
@@ -63,7 +61,8 @@ public class Average {
         return this.line;
     }
 
+    @Override
     public String toString() {
-        return "average = " + getAverage();
+        return String.valueOf(getAverage());
     }
 }
