@@ -1,14 +1,12 @@
 package lab12_scanner_chopper;
 
+import java.util.Scanner;
+
 // A+ Computer Science  -  www.apluscompsci.com
 //Name -
 //Date -
 //Class - 
 //Lab  -
-
-import java.util.Scanner;
-import static java.lang.System.*;
-
 public class LineBreaker {
 
     private String line;
@@ -19,29 +17,35 @@ public class LineBreaker {
     }
 
     public LineBreaker(String s, int b) {
+        this.setLineBreaker(s, b);
     }
 
     public void setLineBreaker(String s, int b) {
+        this.line = s;
+        this.breaker = b;
     }
 
     public String getLine() {
-        return "";
+        return this.line;
     }
 
     public String getLineBreaker() {
         String box = "";
-
-
-
-
-
-
-
+        Scanner chopper = new Scanner(this.line);
+        while (chopper.hasNext()) {
+            String temp = "";
+            for (int i = 0; i < this.breaker; i++) {
+                if (chopper.hasNext()) {
+                    temp += chopper.next();
+                }
+            }
+            box += temp + "\n";
+        }
 
         return box;
     }
 
     public String toString() {
-        return "";
+        return this.getLineBreaker();
     }
 }
