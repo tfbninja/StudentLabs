@@ -20,7 +20,7 @@ public class OddOrEvenRunner {
         for (int i = 0; i < size; i++) {
             int num = file.nextInt();
             tester.setNum(num);
-            System.out.println(tester + "\n");
+            System.out.println(tester);
         }
     }
 }
