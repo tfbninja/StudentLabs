@@ -5,9 +5,7 @@ package lab12_scanner_chopper;
 //Date -
 //Class - 
 //Lab  -
-
 import java.util.Scanner;
-import static java.lang.System.*;
 
 public class LineCounter {
 
@@ -18,21 +16,28 @@ public class LineCounter {
     }
 
     public LineCounter(String s) {
+        setLine(s);
     }
 
     public void setLine(String s) {
+        this.line = s;
     }
 
     public int getCount() {
+        Scanner chopper = new Scanner(this.line);
         int count = 0;
+        while (chopper.hasNextInt()) {
+            count++;
+            chopper.nextInt();
+        }
         return count;
     }
 
     public String getLine() {
-        return "";
+        return this.line;
     }
 
     public String toString() {
-        return getLine();
+        return "count = " + this.getCount();
     }
 }
