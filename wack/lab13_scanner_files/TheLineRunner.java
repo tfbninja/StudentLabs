@@ -5,7 +5,6 @@ package lab13_scanner_files;
 //Date -
 //Class - 
 //Lab  -
-
 import java.io.IOException;
 import java.io.File;
 import java.util.Scanner;
@@ -15,9 +14,12 @@ public class TheLineRunner {
 
     public static void main(String args[]) throws IOException {
         Scanner file = new Scanner(new File("line.dat"));
+        TheLine tester = new TheLine();
         int size = file.nextInt();
         file.nextLine();
         for (int i = 0; i < size; i++) {
+            tester.setLine(file.nextLine());
+            System.out.println(tester.getLine() + " - " + tester + "\n");
         }
     }
 }
