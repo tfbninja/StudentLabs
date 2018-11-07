@@ -1,38 +1,42 @@
 package lab12_scanner_chopper;
 
+import java.util.Scanner;
 // A+ Computer Science  -  www.apluscompsci.com
 //Name -
 //Date -
 //Class - 
 //Lab  -
 
-import static java.lang.System.*;
-import java.util.Scanner;
-
 public class LineTotaller {
 
     private String line;
 
     public LineTotaller() {
-        setLine("");
+        this.line = "";
     }
 
     public LineTotaller(String s) {
+        this.line = s;
     }
 
     public void setLine(String s) {
+        this.line = s;
     }
 
     public int getSum() {
         int total = 0;
+        Scanner chopper = new Scanner(this.line);
+        while (chopper.hasNextInt()) {
+            total += chopper.nextInt();
+        }
         return total;
     }
 
     public String getLine() {
-        return "";
+        return this.line;
     }
 
     public String toString() {
-        return getLine();
+        return "sum = " + this.getSum();
     }
 }
