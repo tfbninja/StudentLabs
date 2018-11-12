@@ -29,11 +29,11 @@ public class Average {
     }
 
     private int getLowest() {
-        int lowest = Integer.MIN_VALUE;
+        int lowest = Integer.MAX_VALUE;
         Scanner chop = new Scanner(this.line);
         while (chop.hasNextInt()) {
             int token = chop.nextInt();
-            if (token > lowest) {
+            if (token < lowest) {
                 lowest = token;
             }
         }
@@ -56,9 +56,7 @@ public class Average {
         while (choppa.hasNextInt()) {
             int num = choppa.nextInt();
             if (num == getLowest() && !dropped) {
-                newList[index] = num;
                 dropped = true;
-                index++;
             } else {
                 newList[index] = num;
                 index++;
@@ -70,7 +68,7 @@ public class Average {
         for (int i : newList) {
             total += i;
         }
-        average = total / (double) size;
+        average = total / (double) (size - 1);
         return average;
     }
 
@@ -78,5 +76,4 @@ public class Average {
     public String toString() {
         return "average = " + getAverage();
     }
-    //write a toString method
 }

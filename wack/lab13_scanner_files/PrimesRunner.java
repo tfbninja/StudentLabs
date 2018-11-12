@@ -5,15 +5,20 @@ package lab13_scanner_files;
 //Date -
 //Class - 
 //Lab  -
-
-import java.io.IOException;
 import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
-import static java.lang.System.*;
-import java.lang.Math;
 
 public class PrimesRunner {
 
     public static void main(String args[]) throws IOException {
+        Scanner file = new Scanner(new File("primes.dat"));
+        Prime tester = new Prime();
+        int numtests = Integer.valueOf(file.nextLine()); // take out number of test cases
+
+        while (file.hasNextInt()) {
+            tester.setPrime(file.nextInt());
+            System.out.println(tester);
+        }
     }
 }

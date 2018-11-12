@@ -81,7 +81,6 @@ public class Box {
         for (int x = 0; x < this.size; x++) {
             for (int y = 0; y < this.size; y++) {
                 realOutput += outputList[y][x];
-                //System.out.print(outputList[x][y]);
             }
             realOutput += "\n";
         }
