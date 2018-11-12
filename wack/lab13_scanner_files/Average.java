@@ -6,7 +6,6 @@ package lab13_scanner_files;
 //Class - 
 //Lab  -
 import java.util.Scanner;
-import static java.lang.System.*;
 
 public class Average {
 
@@ -21,7 +20,12 @@ public class Average {
     }
 
     public String setLine(String line) {
-        return this.line = line;
+        this.line = line;
+        return this.line;
+    }
+
+    public String getLine() {
+        return this.line;
     }
 
     private int getLowest() {
@@ -37,10 +41,42 @@ public class Average {
     }
 
     public double getAverage() {
-        double average = 0.0;
+        int size = 0;
+        Scanner chop = new Scanner(this.line);
+        while (chop.hasNextInt()) { // get size
+            size++;
+            chop.nextInt();
+        }
 
+        int[] newList = new int[size - 1]; // smaller by 1 bc we are dropping the lowest
+        Scanner choppa = new Scanner(this.line);
+
+        int index = 0;
+        boolean dropped = false;
+        while (choppa.hasNextInt()) {
+            int num = choppa.nextInt();
+            if (num == getLowest() && !dropped) {
+                newList[index] = num;
+                dropped = true;
+                index++;
+            } else {
+                newList[index] = num;
+                index++;
+            }
+
+        }
+        double average = 0.0;
+        int total = 0;
+        for (int i : newList) {
+            total += i;
+        }
+        average = total / (double) size;
         return average;
     }
-    //write a getLine method
+
+    @Override
+    public String toString() {
+        return "average = " + getAverage();
+    }
     //write a toString method
 }
