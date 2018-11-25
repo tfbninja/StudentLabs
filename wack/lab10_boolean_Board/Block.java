@@ -1,13 +1,9 @@
-package lab10_boolean_Board;
+package gol;
 
-// A+ Computer Science  -  www.apluscompsci.com
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-//Name -
-//Date -
-//Lab  - Block
 public class Block implements Locatable {
     //instance variables
 
@@ -34,7 +30,7 @@ public class Block implements Locatable {
         this.color = color;
     }
 
-    public Block (int xPos, int yPos, int width, int height){
+    public Block(int xPos, int yPos, int width, int height) {
         this.xPos = xPos;
         this.yPos = yPos;
         this.width = width;
@@ -42,17 +38,14 @@ public class Block implements Locatable {
         this.color = Color.BLACK;
     }
 
-    @Override
     public void setX(int xPos) {
         this.xPos = xPos;
     }
 
-    @Override
     public void setY(int yPos) {
         this.yPos = yPos;
     }
 
-    @Override
     public void setPos(int x, int y) {
         this.xPos = x;
         this.yPos = y;
@@ -92,7 +85,7 @@ public class Block implements Locatable {
         return this.height;
     }
 
-    public Color getColor(){
+    public Color getColor() {
         return this.color;
     }
 

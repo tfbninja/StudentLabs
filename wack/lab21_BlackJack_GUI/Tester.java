@@ -7,7 +7,7 @@ package lab21_BlackJack_GUI;
 //Lab  -
 
 import lab20a_pong_project.Tester;
-import lab10_boolean_Board.Tester;
+import gol.Tester;
 import javax.swing.JFrame;
 import java.awt.Component;
 import lab21_BlackJack_GUI.BlackJack;
