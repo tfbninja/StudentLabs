@@ -19,7 +19,9 @@ public class ArrayListFunHouse {
             for (int b = 0; b < number; b++) {
                 if (a * b == number && !factors.contains(a) && !factors.contains(b)) {
                     factors.add(a);
-                    factors.add(b);
+                    if (a != b) {
+                        factors.add(b);
+                    }
                 }
             }
         }
@@ -29,7 +31,7 @@ public class ArrayListFunHouse {
 
     public static void keepOnlyCompositeNumbers(List<Integer> nums) {
         for (int i = 0; i < nums.size(); i++) {
-            if (getListOfFactors(nums.get(i)).size() > 2) {
+            if (getListOfFactors(nums.get(i)).size() < 2) {
                 nums.remove(i);
                 i--;
             }
