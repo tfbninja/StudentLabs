@@ -1,84 +1,70 @@
 package lab16b_arrayList_madlib;
 
-// A+ Computer Science  -  www.apluscompsci.com
-//Name -
-//Date -
-//Class - 
-//Lab  - 
-
 import java.io.File;
-import java.io.IOException;
-import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.Collections;
 import static java.lang.System.*;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
 
 public class MadLib {
 
     private ArrayList<String> verbs;
     private ArrayList<String> nouns;
     private ArrayList<String> adjectives;
+    private String story = "";
 
     public MadLib() {
     }
 
     public MadLib(String fileName) {
-        //load stuff
-
-
 
         try {
-            Scanner file = new Scanner(new File(fileName));
-
-
-
-
-
-
-
-
+            Scanner verbFile = new Scanner(new File("verbs.dat"));
+            Scanner nounFile = new Scanner(new File("nouns.dat"));
+            Scanner storyFile = new Scanner(new File("story.dat"));
+            Scanner adjFile = new Scanner(new File("adjectives.dat"));
+            while (verbFile.hasNext()) {
+                verbs.add(verbFile.next());
+                verbFile.nextLine();
+            }
+            while (nounFile.hasNext()) {
+                nouns.add(nounFile.next());
+                nounFile.nextLine();
+            }
+            while (storyFile.hasNextLine()) {
+                this.story += storyFile.nextLine();
+            }
+            while (adjFile.hasNext()) {
+                adjectives.add(adjFile.next());
+                adjFile.nextLine();
+            }
 
         } catch (Exception e) {
-            out.println("Houston we have a problem!");
+            out.println("Houston we have a problem!" + e.toString());
         }
 
-    }
-
-    public void loadNouns() {
-        try {
-        } catch (Exception e) {
-        }
-
-    }
-
-    public void loadVerbs() {
-        try {
-        } catch (Exception e) {
-        }
-    }
-
-    public void loadAdjectives() {
-        try {
-        } catch (Exception e) {
-        }
     }
 
     public String getRandomVerb() {
-
-        return "";
+        return choose(verbs);
     }
 
     public String getRandomNoun() {
-
-        return "";
+        return choose(nouns);
     }
 
     public String getRandomAdjective() {
+        return choose(adjectives);
+    }
 
-        return "";
+    public String choose(ArrayList<String> list) {
+        int timeSeed = LocalTime.now().getNano();
+        Random random = new Random(timeSeed);
+        return list.get(random.nextInt(list.size()));
     }
 
     public String toString() {
-        return "\n\n\n";
+        return this.story.replace("@", getRandomVerb()).replace("#", getRandomNoun()).replace("&", getRandomAdjective());
     }
 }
