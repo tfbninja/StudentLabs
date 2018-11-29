@@ -9,9 +9,9 @@ import java.util.Scanner;
 
 public class MadLib {
 
-    private ArrayList<String> verbs;
-    private ArrayList<String> nouns;
-    private ArrayList<String> adjectives;
+    private ArrayList<String> verbs = new ArrayList<>();
+    private ArrayList<String> nouns = new ArrayList<>();
+    private ArrayList<String> adjectives = new ArrayList<>();
     private String story = "";
 
     public MadLib() {
@@ -22,7 +22,7 @@ public class MadLib {
         try {
             Scanner verbFile = new Scanner(new File("verbs.dat"));
             Scanner nounFile = new Scanner(new File("nouns.dat"));
-            Scanner storyFile = new Scanner(new File("story.dat"));
+            Scanner storyFile = new Scanner(new File(fileName));
             Scanner adjFile = new Scanner(new File("adjectives.dat"));
             while (verbFile.hasNext()) {
                 verbs.add(verbFile.next());
@@ -63,8 +63,22 @@ public class MadLib {
         Random random = new Random(timeSeed);
         return list.get(random.nextInt(list.size()));
     }
+    
+    public static replaceStr(String sub, String str){
+        
+    }
 
     public String toString() {
-        return this.story.replace("@", getRandomVerb()).replace("#", getRandomNoun()).replace("&", getRandomAdjective());
+        while (this.story.contains("@")) {
+            this.story = this.story.replaceFirst("@", getRandomVerb());
+            "".repl
+        }
+        while (this.story.contains("#")) {
+            this.story = this.story.replaceFirst("#", getRandomNoun());
+        }
+        while (this.story.contains("&")) {
+            this.story = this.story.replaceFirst("&", getRandomAdjective());
+        }
+        return this.story;
     }
 }
