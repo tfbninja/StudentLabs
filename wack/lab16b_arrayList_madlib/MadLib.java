@@ -4,6 +4,7 @@ import java.io.File;
 import static java.lang.System.*;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -59,25 +60,31 @@ public class MadLib {
     }
 
     public String choose(ArrayList<String> list) {
-        int timeSeed = LocalTime.now().getNano();
-        Random random = new Random(timeSeed);
-        return list.get(random.nextInt(list.size()));
+        Collections.shuffle(list);
+        return list.get(0);
     }
-    
-    public static replaceStr(String sub, String str){
-        
+
+    public static String replaceStr(String str, String old, String replace) {
+        int index = str.indexOf(old);
+        int len = old.length();
+        String newStr;
+        if (index > -1) {
+            newStr = str.substring(0, index) + replace + str.substring(index + len);
+            return newStr;
+        }
+        return str;
+
     }
 
     public String toString() {
         while (this.story.contains("@")) {
-            this.story = this.story.replaceFirst("@", getRandomVerb());
-            "".repl
+            this.story = replaceStr(this.story, "@", getRandomVerb());
         }
         while (this.story.contains("#")) {
-            this.story = this.story.replaceFirst("#", getRandomNoun());
+            this.story = replaceStr(this.story, "#", getRandomNoun());
         }
         while (this.story.contains("&")) {
-            this.story = this.story.replaceFirst("&", getRandomAdjective());
+            this.story = replaceStr(this.story, "&", getRandomAdjective());
         }
         return this.story;
     }
