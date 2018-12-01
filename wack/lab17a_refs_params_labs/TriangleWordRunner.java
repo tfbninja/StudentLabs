@@ -1,16 +1,19 @@
 package lab17a_refs_params_labs;
 
-// A+ Computer Science  -  www.apluscompsci.com
-//Name -
-//Date -
-//Class - 
-//Lab  -
-
 import java.util.Scanner;
-import static java.lang.System.*;
 
 public class TriangleWordRunner {
 
     public static void main(String args[]) {
+        Scanner keyboard = new Scanner(System.in);
+        String response = "";
+
+        do {
+            System.out.print("Enter a word :: ");
+            String word = keyboard.next();
+            TriangleWord.printTriangle(word);
+            System.out.print("Again? ");
+            response = keyboard.next().trim().toLowerCase().substring(0, 1);
+        } while (response.equals("y"));
     }
 }
