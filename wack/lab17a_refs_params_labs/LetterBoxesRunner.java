@@ -1,16 +1,20 @@
 package lab17a_refs_params_labs;
 
-// A+ Computer Science  -  www.apluscompsci.com
-//Name -
-//Date -
-//Class - 
-//Lab  -
-
 import java.util.Scanner;
-import static java.lang.System.*;
 
 public class LetterBoxesRunner {
 
     public static void main(String args[]) {
+        String response = "";
+        Scanner keyboard = new Scanner(System.in);
+        do {
+            System.out.print("Enter the letter for the box :: ");
+            char letter = keyboard.next().trim().charAt(0);
+            System.out.print("Enter the size of the box :: ");
+            int size = keyboard.nextInt();
+            LetterBoxes.printBox(letter, size);
+            System.out.print("More input? ");
+            response = keyboard.next().trim().toLowerCase().substring(0, 1);
+        } while (response.equals("y"));
     }
 }
