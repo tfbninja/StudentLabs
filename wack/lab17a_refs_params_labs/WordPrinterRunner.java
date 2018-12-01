@@ -1,13 +1,7 @@
 package lab17a_refs_params_labs;
 
-// A+ Computer Science  -  www.apluscompsci.com
-//Name -
-//Date -
-//Class - 
-//Lab  -
-
-import java.util.Scanner;
 import static java.lang.System.*;
+import java.util.Scanner;
 
 public class WordPrinterRunner {
 
@@ -21,10 +15,9 @@ public class WordPrinterRunner {
             out.print("Enter the times to display :: ");
             int times = keyboard.nextInt();
 
-            //call the printWord method
-
+            WordPrinter.printWord(word, times);
             System.out.print("\nDo you want to enter more sample input? ");
-            choice = keyboard.next();
-        } while (choice.equals("Y") || choice.equals("y"));
+            choice = keyboard.next().toLowerCase().trim().substring(0);
+        } while (choice.equals("y"));
     }
 }
