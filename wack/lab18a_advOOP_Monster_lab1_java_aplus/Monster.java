@@ -1,46 +1,41 @@
 package lab18a_advOOP_Monster_lab1_java_aplus;
 
-// A+ Computer Science  -  www.apluscompsci.com
-//Name -
-//Date -
-//Class -
-//Lab  -
-
-import static java.lang.System.*;
-
 public class Monster {
 
     private String name;
-    private int howBig;
+    private int size;
 
     public Monster() {
+        this.name = "";
+        this.size = 0;
     }
 
-    public Monster(String n, int size) {
+    public Monster(String name, int size) {
+        this.name = name;
+        this.size = size;
     }
 
     public String getName() {
-        return "";
+        return this.name;
     }
 
-    public int getHowBig() {
-        return 0;
+    public int size() {
+        return this.size;
     }
 
-    public boolean isBigger(Monster other) {
-        return false;
+    public boolean isBiggerThan(Monster other) {
+        return this.size > other.size();
     }
 
-    public boolean isSmaller(Monster other) {
-        //call isBigger() use !
-        return false;
+    public boolean isSmallerThan(Monster other) {
+        return !isBiggerThan(other);
     }
 
     public boolean namesTheSame(Monster other) {
-        return false;
+        return this.name.equals(other.getName());
     }
 
     public String toString() {
-        return "";
+        return this.name + ", size " + this.size();
     }
 }
