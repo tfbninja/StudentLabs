@@ -1,14 +1,7 @@
 package lab16c_arrayList_expression;
 
-// A+ Computer Science  -  www.apluscompsci.com
-//Name - 
-//Date -
-//Class -
-//Lab  -
 import java.util.ArrayList;
-import java.util.Scanner;
-import static java.lang.Integer.*;
-import static java.lang.System.*;
+import java.util.Arrays;
 
 public class ExpressionSolver {
 
@@ -26,11 +19,56 @@ public class ExpressionSolver {
     }
 
     public void solveExpression() {
-        String[] tokens = expression.split(" ");
-        String newExpr = "";
+        solved = 0;
+        ArrayList<String> tokens = new ArrayList<>(Arrays.asList(expression.split(" ")));
+        int total = 0;
+        boolean mult;
+        boolean plus;
+
+        while (tokens.size() > 1) {
+            for (int i = 0; i < tokens.size(); i++) {
+                String token = tokens.get(i).trim();
+                int temp;
+                mult = tokens.toString().contains("*") || tokens.toString().contains("/");
+                plus = tokens.toString().contains("+");
+                //System.out.println("i: " + i + ", mult: " + mult + ", token: " + token + ", plus: " + plus);
+                //System.out.println(tokens);
+
+                try {
+                    if (mult) {
+                        if (token.equals("*")) {
+                            temp = Integer.valueOf(tokens.get(i - 1)) * Integer.valueOf(tokens.get(i + 1));
+                            tokens.set(i, String.valueOf(temp));
+                            tokens.remove(i + 1);
+                            tokens.remove(i - 1);
+                        } else if (token.equals("/")) {
+                            temp = Integer.valueOf(tokens.get(i - 1)) / Integer.valueOf(tokens.get(i + 1));
+                            tokens.set(i, String.valueOf(temp));
+                            tokens.remove(i + 1);
+                            tokens.remove(i - 1);
+                        }
+                    } else {
+                        if (token.equals("+")) {
+                            temp = Integer.valueOf(tokens.get(i - 1)) + Integer.valueOf(tokens.get(i + 1));
+                            tokens.set(i, String.valueOf(temp));
+                            tokens.remove(i + 1);
+                            tokens.remove(i - 1);
+                        } else if (token.equals("-")) {
+                            temp = Math.negateExact(Integer.valueOf(tokens.get(i + 1)));
+                            tokens.set(i, String.valueOf(temp));
+                            tokens.add(i, "+");
+                            tokens.remove(i + 1);
+                        }
+                    }
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("Invalid expression: \"" + expression + "\"");
+                }
+            }
+        }
+        solved = Integer.valueOf(tokens.get(0));
     }
 
     public String toString() {
-        return "";
+        return expression + " = " + solved;
     }
 }
