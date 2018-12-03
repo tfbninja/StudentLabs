@@ -33,7 +33,7 @@ public class Monster {
         // other >= size, which is not what we want. We need to make the method
         // manually, rather than inverting another method
         // return !isBiggerThan(other);
-        return this.size
+        return this.size < other.size();
     }
 
     public boolean namesTheSame(Monster other) {

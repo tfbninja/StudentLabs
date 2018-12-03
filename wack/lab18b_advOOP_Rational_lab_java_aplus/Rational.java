@@ -5,51 +5,95 @@ package lab18b_advOOP_Rational_lab_java_aplus;
 //Date -
 //Class -
 //Lab  -
-
 import static java.lang.System.*;
 
 class Rational implements Comparable<Rational> {
-    //add two instance variables
 
-    //write two constructors
-    //write a setRational method
-    //write  a set method for numerator and denominator
+    private int num;
+    private int den;
+
+    public Rational() {
+        num = 0;
+        den = 1;
+    }
+
+    public Rational(int numerator, int denominator) {
+        num = numerator;
+        den = denominator;
+    }
+
+    public void setRational(int numerator, int denominator) {
+        num = numerator;
+        den = denominator;
+    }
+
+    public void setNumerator(int numerator) {
+        num = numerator;
+    }
+
+    public void setDenominator(int denominator) {
+        den = denominator;
+    }
+
+    public int getNumerator() {
+        return num;
+    }
+
+    public int getDenominator() {
+        return den;
+    }
+
     public void add(Rational other) {
         //num1/den1 + num2/den2 
         //new numerator = (num1 * den2 + num2 * den1)
         //new denominator = (den1 * den2)
-
-
-
-
+        num = num * other.getDenominator() + other.getNumerator() * den;
+        den = den * other.getDenominator();
         reduce();
     }
 
-    private void reduce() {
+    public void reduce() {
+        while (gcd(num, den) != 1) {
+            num /= gcd(num, den);
+            den /= gcd(num, den);
+        }
     }
 
     private int gcd(int numOne, int numTwo) {
-
-
-        return 1;
+        int gcd = 1;
+        for (int i = 2; i < numOne + numTwo; i++) {
+            if (numOne % i == 0 && numTwo % i == 0) {
+                gcd = i;
+            }
+        }
+        return gcd;
     }
 
     public Object clone() {
-        return "";
+        return this;
     }
 
-    //ACCESSORS
-    //write get methods for numerator and denominator
-    public boolean equals(Object obj) {
-
-
+    public boolean equals(Rational obj) {
+        obj.reduce();
+        if (obj.getNumerator() == getNumerator()) {
+            if (obj.getDenominator() == getDenominator()) {
+                return true;
+            }
+        }
         return false;
     }
 
     public int compareTo(Rational other) {
-
-
+        if (this.num / (double) this.den > other.getNumerator() / (double) other.getDenominator()) {
+            return 1;
+        } else if (this.num / (double) this.den == other.getNumerator() / (double) other.getDenominator()) {
+            return 0;
+        }
         return -1;
     }
-    //write  toString() method
+
+    @Override
+    public String toString() {
+        return "Numerator: " + getNumerator() + ", denominator: " + getDenominator();
+    }
 }
