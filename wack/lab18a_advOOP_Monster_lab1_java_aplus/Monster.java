@@ -28,7 +28,12 @@ public class Monster {
     }
 
     public boolean isSmallerThan(Monster other) {
-        return !isBiggerThan(other);
+        // the hint said to invert isBigger(), but after a simple test, that is WRONG
+        // isBiggerThan() equates to size > other. Therefore negating that gives
+        // other >= size, which is not what we want. We need to make the method
+        // manually, rather than inverting another method
+        // return !isBiggerThan(other);
+        return this.size
     }
 
     public boolean namesTheSame(Monster other) {
