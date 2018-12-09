@@ -5,15 +5,13 @@ package lab18b_advOOP_Rational_lab_java_aplus;
 //Date -
 //Class -
 //Lab  -
-import static java.lang.System.*;
-
 class Rational implements Comparable<Rational> {
 
     private int num;
     private int den;
 
     public Rational() {
-        num = 0;
+        num = 1;
         den = 1;
     }
 
@@ -54,8 +52,9 @@ class Rational implements Comparable<Rational> {
 
     public void reduce() {
         while (gcd(num, den) != 1) {
-            num /= gcd(num, den);
-            den /= gcd(num, den);
+            int gcdNum = gcd(num, den);
+            num /= gcdNum;
+            den /= gcdNum;
         }
     }
 
@@ -94,6 +93,6 @@ class Rational implements Comparable<Rational> {
 
     @Override
     public String toString() {
-        return "Numerator: " + getNumerator() + ", denominator: " + getDenominator();
+        return getNumerator() + "/" + getDenominator();
     }
 }

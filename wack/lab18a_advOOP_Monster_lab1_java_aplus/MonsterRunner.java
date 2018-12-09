@@ -8,15 +8,15 @@ public class MonsterRunner {
         Scanner keyboard = new Scanner(System.in);
         for (int i = 0; i < 3; i++) {
             System.out.print("Name1: ");
-            String name1 = keyboard.next().trim();
+            String name1 = keyboard.nextLine().trim();
             System.out.print("Size1: ");
-            int size1 = keyboard.nextInt();
+            int size1 = Integer.valueOf(keyboard.nextLine().replaceAll("\\D", ""));
             Monster monsterOne = new Monster(name1, size1);
 
             System.out.print("Name2: ");
-            String name2 = keyboard.next().trim();
+            String name2 = keyboard.nextLine().trim();
             System.out.print("Size2: ");
-            int size2 = keyboard.nextInt();
+            int size2 = Integer.valueOf(keyboard.nextLine().replaceAll("\\D", ""));
             Monster monsterTwo = new Monster(name2, size2);
 
             System.out.println("Monster 1 - " + monsterOne);

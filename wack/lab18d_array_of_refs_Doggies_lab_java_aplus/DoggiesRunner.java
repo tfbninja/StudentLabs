@@ -1,12 +1,5 @@
 package lab18d_array_of_refs_Doggies_lab_java_aplus;
 
-// A+ Computer Science  -  www.apluscompsci.com
-//Name -
-//Date -
-//Class - 
-//Lab  - 
-
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class DoggiesRunner {
@@ -15,18 +8,24 @@ public class DoggiesRunner {
         Scanner keyboard = new Scanner(System.in);
 
         System.out.print("How many Dogs are in the pack? :: ");
-        int size = keyboard.nextInt();
-        Doggies pack = new Doggies(size);
+        int size = skimDigits(keyboard.nextLine());
+        Pack pack = new Pack(size);
 
         for (int i = 0; i < size; i++) {
+            Dog tempD = new Dog();
             System.out.print("Enter the age :: ");
-            int age = keyboard.nextInt();
+            tempD.setAge(skimDigits(keyboard.nextLine()));
             System.out.print("Enter the name :: ");
-            String name = keyboard.next();
-            pack.add(i, age, name);
+            tempD.setName(keyboard.nextLine().replaceAll("\\s", ""));
+            pack.add(tempD);
+            System.out.println("");
         }
         System.out.println("pack :: " + pack);
         System.out.println("NAME OF OLDEST :: " + pack.getNameOfOldest());
         System.out.println("NAME OF YOUNGEST :: " + pack.getNameOfYoungest());
+    }
+
+    public static int skimDigits(String input) {
+        return Integer.valueOf(input.replaceAll("\\D", ""));
     }
 }

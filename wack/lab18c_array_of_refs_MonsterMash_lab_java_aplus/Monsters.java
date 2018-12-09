@@ -1,38 +1,55 @@
 package lab18c_array_of_refs_MonsterMash_lab_java_aplus;
 
-// A+ Computer Science  -  www.apluscompsci.com
-//Name -
-//Date -
-//Class -
-//Lab  -
-
-import java.util.Arrays;
-import java.util.Scanner;
-import static java.lang.System.*;
-import static java.lang.Math.*;
-import static java.util.Arrays.*;
-import static java.util.Collections.*;
+import java.util.*;
 
 public class Monsters {
 
-    private Monster[] myMonsters;
+    private ArrayList<Monster> monsters;
 
     public Monsters(int size) {
+        monsters = new ArrayList<>();
     }
 
-    public void add(int spot, Monster m) {
-        //put m in the Monster array at [spot]
+    public void set(int spot, Monster m) {
+        monsters.set(spot, m);
     }
 
-    public String getLargest() {
-        return null;
+    public void add(Monster m) {
+        monsters.add(m);
+    }
+
+    public void remove(Monster m) {
+        monsters.remove(m);
+    }
+
+    public Monster getLargest() {
+        Monster largest = monsters.get(0);
+        for (Monster m : monsters) {
+            if (m.getSize() > largest.getSize()) {
+                largest = m;
+            }
+        }
+        return largest;
     }
 
     public Monster getSmallest() {
-        return null;
+        Monster smallest = monsters.get(0);
+        for (Monster m : monsters) {
+            if (m.getSize() < smallest.getSize()) {
+                smallest = m;
+            }
+        }
+        return smallest;
     }
 
+    @Override
     public String toString() {
-        return "";
+        String output = "[";
+        for (Monster m : monsters) {
+            output += m.toString() + ", ";
+        }
+        output = output.substring(0, output.length() - 2);
+        output += "]";
+        return output;
     }
 }

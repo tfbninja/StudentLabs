@@ -1,16 +1,8 @@
 package lab18e_array_of_refs_Gradebook_lab_java_aplus;
 
-// A+ Computer Science  -  www.apluscompsci.com
-//Name -
-//Date -
-//Class -
-//Lab  - 
-
-import java.util.Arrays;
-import java.util.Scanner;
-import static java.lang.System.*;
-import static java.util.Arrays.*;
 import java.io.File;
+import static java.lang.System.*;
+import java.util.Scanner;
 
 public class GradeBookFileRunner {
 
@@ -18,18 +10,6 @@ public class GradeBookFileRunner {
         out.println("Welcome to the Class Stats program!");
 
         Scanner file = new Scanner(new File("gradebook.dat"));
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }
