@@ -4,7 +4,6 @@ public class Grade {
 
     private double value;
 
-    //add in two constructors
     public Grade() {
         value = 0.0;
     }

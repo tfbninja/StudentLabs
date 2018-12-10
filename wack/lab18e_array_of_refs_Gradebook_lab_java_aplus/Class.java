@@ -12,7 +12,6 @@ import java.util.*;
 public class Class {
 
     private String name;
-    // private Student[] studentList; // I refuse to use primitive lists when there is a dire need for a dynamically sized list. To not use an ArrayList here would be idiotic.
     private ArrayList<Student> roster = new ArrayList<Student>();
 
     public Class() {

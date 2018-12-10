@@ -1,18 +1,10 @@
 package lab14a_array_labs;
 
-// A+ Computer Science  -  www.apluscompsci.com
-//Name -
-//Date - 
-//Class -
-//Lab  -
 
-import static java.lang.System.*;
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class ArrayStats {
-    //instance variable
-
+    private int[] array;
     //constructor
     //set method
     public int getNumGroupsOfSize(int size) {

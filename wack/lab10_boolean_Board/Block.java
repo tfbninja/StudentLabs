@@ -1,4 +1,4 @@
-package gol;
+package lab10_boolean_Board;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
