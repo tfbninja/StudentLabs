@@ -20,7 +20,7 @@ public class Word {
     public int getNumVowels() {
         int count = 0;
         for (char c : word.toCharArray()) {
-            if (vowels.indexOf(c) >= 0) {
+            if (vowels.indexOf(Character.toLowerCase(c)) >= 0) {
                 count++;
             }
         }
