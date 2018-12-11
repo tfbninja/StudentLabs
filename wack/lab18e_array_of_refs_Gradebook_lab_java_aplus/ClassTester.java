@@ -13,9 +13,7 @@ public class ClassTester {
 
         out.println(String.format(test.getStudentName(0) + "\'s average = %.2f", test.getStudentAverage(0)));
         out.println(String.format(test.getStudentName(1) + "\'s average = %.2f", test.getStudentAverage(1)));
-        out.println(String.format(test.getStudentName(2) + "\'s average %.2f", test.getStudentAverage(2)));
-
-        out.println(String.format("Sandy" + "\'s average %.2f", test.getStudentAverage("Sandy")));
+        out.println(String.format(test.getStudentName(2) + "\'s average = %.2f", test.getStudentAverage(2)));
 
         out.println("Failure List = " + test.getFailureList(70));
         out.println("Highest Average = " + test.getStudentWithHighestAverage());

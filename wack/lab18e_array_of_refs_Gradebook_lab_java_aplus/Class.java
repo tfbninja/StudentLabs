@@ -15,7 +15,7 @@ public class Class {
     private ArrayList<Student> roster = new ArrayList<Student>();
 
     public Class() {
-        name = "Class " + (int) +Math.random() * 100000;
+        name = "Class " + (int) (Math.random() * 100000);
     }
 
     public Class(String name) {
@@ -32,46 +32,74 @@ public class Class {
 
     public double getClassAverage() {
         double classAverage = 0.0;
+        for (Student s : roster) {
+            classAverage += s.getAverage();
+        }
+        classAverage /= roster.size();
 
         return classAverage;
     }
 
     public double getStudentAverage(int stuNum) {
-        return 0.0;
+        return roster.get(stuNum).getAverage();
     }
 
     public double getStudentAverage(String stuName) {
-
-        return 0.0;
+        int studentIndex = -1;
+        for (Student s : roster) {
+            if (s.getName().equals(stuName)) {
+                studentIndex = roster.indexOf(s);
+            }
+        }
+        if (studentIndex == -1) {
+            return 0.0;
+        }
+        return roster.get(studentIndex).getAverage();
     }
 
     public String getStudentName(int stuNum) {
-        return "";
+        return roster.get(stuNum).getName();
     }
 
     public String getStudentWithHighestAverage() {
-        double high = Double.MIN_VALUE;
+        double high = roster.get(0).getAverage();
         String hName = "";
-
+        for (Student s : roster) {
+            if (s.getAverage() > high) {
+                high = s.getAverage();
+                hName = s.getName();
+            }
+        }
         return hName;
     }
 
     public String getStudentWithLowestAverage() {
-        double low = Double.MAX_VALUE;
-        String hName = "";
-
-        return hName;
+        double low = roster.get(0).getAverage();
+        String lName = roster.get(0).getName();
+        for (Student s : roster) {
+            if (s.getAverage() < low) {
+                low = s.getAverage();
+                lName = s.getName();
+            }
+        }
+        return lName;
     }
 
     public String getFailureList(double failingGrade) {
         String output = "";
-
+        for (Student s : roster) {
+            if (s.getAverage() <= failingGrade) {
+                output += s.getName() + " ";
+            }
+        }
         return output;
     }
 
     public String toString() {
         String output = "" + getClassName() + "\n";
-
+        for (Student s : roster) {
+            output += s + "    " + s.getAverage() + "\n";
+        }
         return output;
     }
 }

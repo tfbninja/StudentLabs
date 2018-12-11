@@ -8,7 +8,7 @@ public class Grade {
         value = 0.0;
     }
 
-    public Grade(int value) {
+    public Grade(double value) {
         this.value = value;
     }
 
@@ -21,12 +21,16 @@ public class Grade {
     }
 
     public char getLetterGrade() {
-        // I've only written this by hand and on the computer ~30 times at this point....
-        // here's a more creative and concise method
-        char[] letters = {'F', 'D', 'C', 'B', 'A'};
-        try {
-            return letters[(int) (value / 20 - 2)];
-        } catch (ArrayIndexOutOfBoundsException e) {
+        int simp = (int) ((value - 50) / 10);
+        if (simp >= 4) {
+            return 'A';
+        } else if (simp >= 3) {
+            return 'B';
+        } else if (simp >= 2) {
+            return 'C';
+        } else if (simp >= 1) {
+            return 'D';
+        } else {
             return 'F';
         }
 

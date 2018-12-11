@@ -1,4 +1,6 @@
-package lab09_while_dowhile;
+package lab18f_list_of_references_number;
+
+import lab09_while_dowhile.*;
 
 public class Perfect {
 
