@@ -28,7 +28,7 @@ public class Student implements Comparable {
 
     @Override
     public int compareTo(Object other) {
-        return (int) Math.round(Math.abs(this.getAverage() - ((Student) other).getAverage()));
+        return (int) Math.abs(this.getAverage() - ((Student) other).getAverage());
     }
 
     public void setName(String name) {

@@ -1,39 +1,41 @@
 package lab18h_list_of_references_toys;
 
-// A+ Computer Science  -  www.apluscompsci.com
-//Name -
-//Date -
-//Class -
-//Lab  -
-
-import static java.lang.System.*;
-
-public class Toy {
+public class Toy implements Comparable {
 
     private String name;
     private int count;
 
     public Toy() {
+        this.name = "";
+        this.count = 1;
     }
 
     public Toy(String nm) {
+        this.name = nm;
+        this.count = 1;
     }
 
     public int getCount() {
-        return 0;
+        return count;
     }
 
     public void setCount(int cnt) {
+        this.count = cnt;
     }
 
     public String getName() {
-        return null;
+        return name;
     }
 
     public void setName(String nm) {
+        this.name = nm;
+    }
+
+    public int compareTo(Object other) {
+        return getCount() - ((Toy) other).getCount();
     }
 
     public String toString() {
-        return "";
+        return name + " " + count;
     }
 }
