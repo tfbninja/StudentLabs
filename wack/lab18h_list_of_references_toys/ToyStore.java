@@ -1,6 +1,6 @@
 package lab18h_list_of_references_toys;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class ToyStore {
 
@@ -37,9 +37,10 @@ public class ToyStore {
     }
 
     public void sortToysByCount() {
+        Collections.sort(toyList);
     }
 
     public String toString() {
-        return "";
+        return toyList.toString();
     }
 }
