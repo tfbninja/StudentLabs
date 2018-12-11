@@ -1,18 +1,9 @@
 package lab18j_list_of_references__winter_scene_project;
 
-// A+ Computer Science  -  www.apluscompsci.com
-
 import javafx.scene.canvas.Canvas;
 import javafx.scene.paint.Color;
 
-//Name -
-//Date -
-//Class -
-//Lab  -
-
-
 public abstract class AbstractShape {
-    //instance variables
 
     private int xPos;
     private int yPos;

@@ -1,17 +1,18 @@
 package lab18j_list_of_references__winter_scene_project;
 
-// A+ Computer Science  -  www.apluscompsci.com
-
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-//Name -
-//Date -
-//Class -
-//Lab  -
-
-
 public class SnowMan extends AbstractShape {
+
+    private int x;
+    private int y;
+    private int w;
+    private int h;
+    private Color color;
+    private int xSpeed;
+    private int ySpeed;
 
     public SnowMan(int x, int y, int w, int h) {
         super(x, y, w, h, Color.WHITE, 0, 0);
@@ -19,7 +20,8 @@ public class SnowMan extends AbstractShape {
 
     @Override
     public void draw(Canvas canvas) {
-        //add code here to make a snowman 	      	
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.fillOval(x - w / 2, y - h / 2, w, h);
     }
 
 }
