@@ -23,6 +23,10 @@ public class Toy implements Comparable {
         this.count = cnt;
     }
 
+    public void increment() {
+        this.count++;
+    }
+
     public String getName() {
         return name;
     }

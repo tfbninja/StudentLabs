@@ -13,7 +13,17 @@ public class ToyStore {
     public void loadToys(String toys) {
         Scanner chop = new Scanner(toys);
         while (chop.hasNext()) {
-            toyList.add(new Toy(chop.next()));
+            String tempName = chop.next();
+            boolean happened = false;
+            for (Toy t : toyList) {
+                if (tempName.equals(t.getName())) {
+                    t.increment();
+                    happened = true;
+                }
+            }
+            if (!happened) {
+                toyList.add(new Toy(tempName));
+            }
         }
     }
 
@@ -33,7 +43,7 @@ public class ToyStore {
                 return t.getName();
             }
         }
-        return "";
+        return toyList.get(0).getName();
     }
 
     public void sortToysByCount() {
