@@ -1,13 +1,5 @@
 package lab19b_interfaces_Monster_lab2_java_aplus;
 
-// A+ Computer Science  -  www.apluscompsci.com
-//Name - 
-//Date -
-//Class -
-//Lab  -
-
-import static java.lang.System.*;
-
 public class MonsterRunner {
 
     public static void main(String args[]) {
@@ -15,33 +7,29 @@ public class MonsterRunner {
         Monster one = new Monster(8);
         Monster sue = new Monster(9, 4);
         Monster harry = new Monster(1, 2, 3);
-        out.println("\nzero Monster :: " + zero);
-        out.println("\none Monster :: " + one);
-        out.println("\nsue Monster :: " + sue);
-        out.println("\nharry Monster :: " + harry);
-
-        out.println("\nchanging harry's properties ");
+        System.out.println("\nzero Monster :: " + zero);
+        System.out.println("\none Monster :: " + one);
+        System.out.println("\nsue Monster :: " + sue);
+        System.out.println("\nharry Monster :: " + harry);
+        System.out.println("\nchanging harry's properties ");
         harry.setHeight(7);
         harry.setWeight(6);
         harry.setAge(5);
-        out.println("\nharry Monster :: " + harry);
-
-        out.println("\ncloning harry");
+        System.out.println("\nharry Monster :: " + harry);
+        System.out.println("\ncloning harry");
         sue = (Monster) harry.clone();
-        out.println("\nsue Monster :: " + sue);
+        System.out.println("\nsue Monster :: " + sue);
 
         Monster mOne = new Monster(33, 33, 11);
         Monster mTwo = new Monster(55, 33, 11);
 
-        out.println("\nMonster 1 :: " + mOne);
-        out.println("\nMonster 2 :: " + mTwo);
-
-        out.print("\nmOne.equals(mTwo) == ");
-        out.println(mOne.equals(mTwo));
-
-        out.print("\nmOne.compareTo(mTwo) == ");
-        out.println(mOne.compareTo(mTwo));
-        out.print("\nmTwo.compareTo(mOne) == ");
-        out.println(mTwo.compareTo(mOne));
+        System.out.println("\nMonster 1 :: " + mOne);
+        System.out.println("\nMonster 2 :: " + mTwo);
+        System.out.print("\nmOne.equals(mTwo) == ");
+        System.out.println(mOne.equals(mTwo));
+        System.out.print("\nmOne.compareTo(mTwo) == ");
+        System.out.println(mOne.compareTo(mTwo));
+        System.out.print("\nmTwo.compareTo(mOne) == ");
+        System.out.println(mTwo.compareTo(mOne));
     }
 }

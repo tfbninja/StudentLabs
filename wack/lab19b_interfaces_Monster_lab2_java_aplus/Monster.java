@@ -1,13 +1,5 @@
 package lab19b_interfaces_Monster_lab2_java_aplus;
 
-// A+ Computer Science  -  www.apluscompsci.com
-//Name - 
-//Date -
-//Class -
-//Lab  -
-
-import static java.lang.System.*;
-
 public class Monster implements Comparable {
 
     private int myWeight;
@@ -27,18 +19,17 @@ public class Monster implements Comparable {
 
     public boolean equals(Object obj) {
 
-
         return false;
     }
 
     public int compareTo(Object obj) {
         Monster rhs = (Monster) obj;
 
-
-
-
-
         return -1;
     }
-    //write a toString() method
+
+    @Override
+    public String toString() {
+        return "";
+    }
 }
