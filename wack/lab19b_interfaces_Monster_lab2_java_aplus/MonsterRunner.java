@@ -3,10 +3,10 @@ package lab19b_interfaces_Monster_lab2_java_aplus;
 public class MonsterRunner {
 
     public static void main(String args[]) {
-        Monster zero = new Monster();
-        Monster one = new Monster(8);
-        Monster sue = new Monster(9, 4);
-        Monster harry = new Monster(1, 2, 3);
+        Monsterold zero = new Monsterold();
+        Monsterold one = new Monsterold(8);
+        Monsterold sue = new Monsterold(9, 4);
+        Monsterold harry = new Monsterold(1, 2, 3);
         System.out.println("\nzero Monster :: " + zero);
         System.out.println("\none Monster :: " + one);
         System.out.println("\nsue Monster :: " + sue);
@@ -17,11 +17,11 @@ public class MonsterRunner {
         harry.setAge(5);
         System.out.println("\nharry Monster :: " + harry);
         System.out.println("\ncloning harry");
-        sue = (Monster) harry.clone();
+        sue = (Monsterold) harry.clone();
         System.out.println("\nsue Monster :: " + sue);
 
-        Monster mOne = new Monster(33, 33, 11);
-        Monster mTwo = new Monster(55, 33, 11);
+        Monsterold mOne = new Monsterold(33, 33, 11);
+        Monsterold mTwo = new Monsterold(55, 33, 11);
 
         System.out.println("\nMonster 1 :: " + mOne);
         System.out.println("\nMonster 2 :: " + mTwo);

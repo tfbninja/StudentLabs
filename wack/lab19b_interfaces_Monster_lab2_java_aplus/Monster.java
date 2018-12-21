@@ -1,35 +1,78 @@
 package lab19b_interfaces_Monster_lab2_java_aplus;
 
-public class Monster implements Comparable {
+public class Monster {
 
-    private int myWeight;
-    private int myHeight;
-    private int myAge;
+    private int size;
+    private String name;
+    private int height;
+    private int age;
 
-    //write a default Constructor
-    //write an initialization constructor with an int parameter ht
-    //write an initialization constructor with int parameters ht and wt
-    //write an initialization constructor with int parameters ht, wt, and age
-    //modifiers - write set methods for height, weight, and age
-    //accessors - write get methods for height, weight, and age
-    //creates a new copy of this Object
-    public Object clone() {
-        return new Monster();
+    public Monster() {
+        this.size = 1;
+        this.name = "Monster " + (int) Math.random() * 100000;
+        this.height = 1;
+        this.age = 0;
     }
 
-    public boolean equals(Object obj) {
-
-        return false;
+    public Monster(int size, int height, int age) {
+        this.size = size;
+        this.name = "Monster " + (int) Math.random() * 100000;
+        this.height = height;
+        this.age = age;
     }
 
-    public int compareTo(Object obj) {
-        Monster rhs = (Monster) obj;
+    public Monster(int size, String name, int height, int age) {
+        this.size = size;
+        this.name = name;
+        this.height = height;
+        this.age = age;
+    }
 
-        return -1;
+    public String getName() {
+        return this.name;
+    }
+
+    public int getSize() {
+        return this.size;
+    }
+
+    public int getHeight() {
+        return this.height;
+    }
+
+    public int getAge() {
+        return this.age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setHeight(int amt) {
+        this.height = amt;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public int compareTo(Monster otherMonster) {
+        if (this.size < otherMonster.getSize()) {
+            return -1;
+        } else if (this.size > otherMonster.getSize()) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     @Override
     public String toString() {
-        return "";
+        return getHeight() + " " + getSize() + " " + getAge();
     }
+
 }

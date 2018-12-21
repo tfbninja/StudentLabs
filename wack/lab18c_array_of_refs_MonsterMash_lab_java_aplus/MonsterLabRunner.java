@@ -1,5 +1,6 @@
 package lab18c_array_of_refs_MonsterMash_lab_java_aplus;
 
+import lab19b_interfaces_Monster_lab2_java_aplus.Monster;
 import static java.lang.System.*;
 import java.util.Scanner;
 
