@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package pong;
+package lab20a_pong_project;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -26,10 +21,14 @@ public class PaddleTestTwo extends Application {
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
     private static Canvas canvas;
-    Ball one;
-    Paddle left;
-    Paddle right;
-    RedrawTimer timer = new RedrawTimer();
+    private int paddleMargin = 20;
+    private int paddleHeight = 100;
+    private int paddleWidth = 25;
+    private Block bg = new Block(0, 0, WIDTH, HEIGHT, Color.BLACK);
+    private Ball ball;
+    private Paddle left;
+    private Paddle right;
+    private RedrawTimer timer = new RedrawTimer();
 
     @Override
     public void start(Stage primaryStage) {
@@ -39,26 +38,34 @@ public class PaddleTestTwo extends Application {
         root.getChildren().add(canvas);
 
         //instantiate a Ball
+        ball = new Ball(WIDTH / 2, HEIGHT / 2, 20, 20, Color.LAWNGREEN, 3, 4);
+        ball.setBounds(0, 0, WIDTH, HEIGHT);
 
         //instantiate a left Paddle
+        left = new Paddle(paddleMargin, HEIGHT / 2 - paddleHeight / 2, paddleWidth, paddleHeight, Color.BLUE, 6);
+        left.setYBounds(0, HEIGHT);
 
         //instantiate a right Paddle
+        right = new Paddle(WIDTH - paddleMargin - paddleWidth, HEIGHT / 2 - paddleHeight / 2, paddleWidth, paddleHeight, Color.RED, 6);
+        right.setYBounds(0, HEIGHT);
+
+        ball.addPaddles(left, right);
 
         Scene scene = new Scene(root, WIDTH, HEIGHT);
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
                 if (event.getCode() == KeyCode.UP) {
-                    right.setDirection("UP");
+                    right.up();
                 }
                 if (event.getCode() == KeyCode.DOWN) {
-                    right.setDirection("DOWN");
+                    right.down();
                 }
                 if (event.getCode() == KeyCode.W) {
-                    left.setDirection("UP");
+                    left.up();
                 }
                 if (event.getCode() == KeyCode.S) {
-                    left.setDirection("DOWN");
+                    left.down();
                 }
             }
         });
@@ -66,16 +73,16 @@ public class PaddleTestTwo extends Application {
             @Override
             public void handle(KeyEvent event) {
                 if (event.getCode() == KeyCode.UP) {
-                    right.setDirection("NEUTRAL");
+                    right.stop();
                 }
                 if (event.getCode() == KeyCode.DOWN) {
-                    right.setDirection("NEUTRAL");
+                    right.stop();
                 }
                 if (event.getCode() == KeyCode.W) {
-                    left.setDirection("NEUTRAL");
+                    left.stop();
                 }
                 if (event.getCode() == KeyCode.S) {
-                    left.setDirection("NEUTRAL");
+                    left.stop();
                 }
             }
         });
@@ -94,17 +101,12 @@ public class PaddleTestTwo extends Application {
 
     public class RedrawTimer extends AnimationTimer { //added for animation lab05
 
-
         @Override
         public void handle(long now) {
-            
-            one.update(canvas);
-            one.draw(canvas, one.getColor());
+            bg.draw(canvas, bg.getColor());
             left.update(canvas);
-            left.draw(canvas, left.getColor());
             right.update(canvas);
-            right.draw(canvas, right.getColor());
+            ball.update(canvas);
         }
-
     }
 }

@@ -1,4 +1,4 @@
-package pong;
+package lab20a_pong_project;
 
 
 

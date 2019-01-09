@@ -1,4 +1,4 @@
-package pong;
+package lab20a_pong_project;
 
 import static java.lang.System.*;
 import javafx.scene.paint.Color;

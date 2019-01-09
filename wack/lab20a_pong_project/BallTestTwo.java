@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package pong;
+package lab20a_pong_project;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -22,7 +17,8 @@ public class BallTestTwo extends Application {
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
     private static Canvas canvas;
-    Ball one;
+    Block bg = new Block(0, 0, WIDTH, HEIGHT, Color.BLACK);
+    Ball ball;
     RedrawTimer timer = new RedrawTimer();
 
     @Override
@@ -32,9 +28,14 @@ public class BallTestTwo extends Application {
         canvas = new Canvas(WIDTH, HEIGHT);
         root.getChildren().add(canvas);
 
-        //instantiate a new Ball
-        //test the Ball thoroughly
-        //test all constructors
+        ball = new Ball();
+        ball.setXPos(0);
+        ball.setYPos(0);
+        ball.setXSpeed(1);
+        ball.setYSpeed(7);
+        ball.setColor(Color.LAWNGREEN);
+        ball.setBounds(0, 0, WIDTH, HEIGHT);
+
         Scene scene = new Scene(root, WIDTH, HEIGHT);
 
         primaryStage.setTitle("Pong!");
@@ -55,10 +56,9 @@ public class BallTestTwo extends Application {
         //private long lastFrameTime;
         @Override
         public void handle(long now) {
-            
-            one.update(canvas);
-            one.draw(canvas, one.getColor());
+            bg.draw(canvas, bg.getColor());
+            ball.setColor(Color.LAWNGREEN);
+            ball.update(canvas);
         }
-
     }
 }
