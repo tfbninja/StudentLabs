@@ -77,12 +77,6 @@ public class Ball extends Block implements Renderable, Updateable {
     @Override
     public void update(Canvas canvas) {
         xSwitches = 0;
-        //draw a white ball at old ball location
-        // hold up, Tim here... what did you say??
-        // WHO SAID THE BACKGROUND COLOR WAS WHITE?!?!
-        // YOU TERRIBLE PERSON; BLACK BACKGROUNDS ARE SO MUCH BETTER!!!
-        // BETTER TO NOT ASSUME AND LET THE MASTER CLASS CLEAR THE DANG BACKGROUND EVERY FRAME ITSELF!!!
-        //draw(canvas, Color.WHITE); // see above
 
         int[] bounds = super.getBounds();
         if (super.getXBoundsOn()) {
@@ -104,11 +98,9 @@ public class Ball extends Block implements Renderable, Updateable {
          * }
          * }
          */
-        if (xSpeed < 0) {
-            this.checkLeftPaddle(lP);
-        } else {
-            this.checkRightPaddle(rP);
-        }
+        this.checkLeftPaddle(lP);
+        this.checkRightPaddle(rP);
+
         super.changeX(xSpeed);
         super.changeY(ySpeed);
         draw(canvas, super.getColor());
@@ -141,25 +133,17 @@ public class Ball extends Block implements Renderable, Updateable {
     }
 
     public void checkLeftPaddle(Block b) {
-        int bX = b.getX(), bW = b.getWidth(), x = super.getX(), y = super.getY(), h = super.getHeight(), bY = b.getY(), bH = super.getHeight();
-        if (x <= bX + bW + Math.abs(xSpeed) && y >= bY && y <= bY + bH || y + h >= bY && y + h < bY + bH) {
-            if (x <= bX + bW - Math.abs(xSpeed)) {
-                toggleY();
-            } else {
-                toggleX();
-            }
-        }
+        //int bX = b.getX(), bW = b.getWidth(), x = super.getX(), y = super.getY(), h = super.getHeight(), bY = b.getY(), bH = super.getHeight();
+        checkCollideRight(b);
+        checkCollideTop(b);
+        checkCollideBottom(b);
     }
 
     public void checkRightPaddle(Block b) {
-        int bX = b.getX(), bW = b.getWidth(), x = super.getX(), y = super.getY(), h = super.getHeight(), bY = b.getY(), bH = super.getHeight();
-        if (x >= bX - Math.abs(xSpeed) && y >= bY && y <= bY + bH || y + h >= bY && y + h < bY + bH) {
-            if (x >= bX + Math.abs(xSpeed)) {
-                toggleY();
-            } else {
-                toggleX();
-            }
-        }
+        int bX = b.getX(), bW = b.getWidth(), x = super.getX(), y = super.getY(), w = super.getWidth(), h = super.getHeight(), bY = b.getY(), bH = super.getHeight();
+        checkCollideLeft(b);
+        checkCollideTop(b);
+        checkCollideBottom(b);
     }
 
     public void checkCollideRight(Block b) {
@@ -179,7 +163,7 @@ public class Ball extends Block implements Renderable, Updateable {
         y += ySpeed;
         if (y <= bY + bH && y > bY) {
             if (x + w > bX && x < bX + bW) {
-                toggleY();
+                ySpeed = -Math.abs(ySpeed);
             }
         }
     }

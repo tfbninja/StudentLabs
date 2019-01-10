@@ -21,7 +21,7 @@ public class PaddleTestTwo extends Application {
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
     private static Canvas canvas;
-    private int paddleMargin = 20;
+    private int paddleMargin = 15;
     private int paddleHeight = 100;
     private int paddleWidth = 25;
     private Block bg = new Block(0, 0, WIDTH, HEIGHT, Color.BLACK);

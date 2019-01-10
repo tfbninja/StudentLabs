@@ -11,7 +11,7 @@ public class Paddle extends Block implements Renderable, Updateable {
 
     private int speed;
     private int velocity = 0;
-    //private String direction; // why... so unnecessary. Remember Algebra 1 when we learned about negative numbers? yeah....
+    // private String direction; // why... so unnecessary. Remember Algebra 1 when we learned about negative numbers? yeah....
     // there is no need to use volatile string commands here... always use math when possible
 
     public Paddle() {
