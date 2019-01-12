@@ -1,5 +1,7 @@
 package lab20a_pong_project;
 
+import javafx.scene.paint.Color;
+
 /**
  *
  * @author Tim Barber
@@ -13,6 +15,15 @@ public class Physical {
     private int yVel;
     private int zVel;
     private int weight;
+    private Color color = Color.SILVER;
+    private Color stroke = Color.BLACK;
+    // bounds
+    private int bottomY;
+    private int topY;
+    private int leftX;
+    private int rightX;
+    private int backZ;
+    private int frontZ;
 
     public Physical() {
         x = 0;
@@ -24,13 +35,13 @@ public class Physical {
         weight = 0;
     }
 
-    public Physical(int xPos, int yPos, int xVelocity, int yVelocity, int weight) {
+    public Physical(int xPos, int yPos, int zPos, int xVelocity, int yVelocity, int zVelocity, int weight) {
         x = xPos;
         y = yPos;
-        z = 0;
+        z = zPos;
         xVel = xVelocity;
         yVel = yVelocity;
-        zVel = 0;
+        zVel = zVelocity;
         this.weight = weight;
     }
 
@@ -46,6 +57,11 @@ public class Physical {
         return z;
     }
 
+    public int[] getPos() {
+        int[] pos = {x, y, z};
+        return pos;
+    }
+
     public int getXVelocity() {
         return xVel;
     }
@@ -58,8 +74,50 @@ public class Physical {
         return zVel;
     }
 
+    public int[] getVelocity() {
+        int[] velocity = {xVel, yVel, zVel};
+        return velocity;
+    }
+
     public int getWeight() {
         return weight;
+    }
+
+    public Color getColor() {
+        return this.color;
+    }
+
+    public Color getStroke() {
+        return this.stroke;
+    }
+
+    public int getLeftBound() {
+        return leftX;
+    }
+
+    public int getRightBound() {
+        return rightX;
+    }
+
+    public int getTopBound() {
+        return topY;
+    }
+
+    public int getBottomBound() {
+        return bottomY;
+    }
+
+    public int getBackBound() {
+        return backZ;
+    }
+
+    public int getFrontBound() {
+        return frontZ;
+    }
+
+    public int[] getBounds() {
+        int[] bounds = {getLeftBound(), getRightBound(), getTopBound(), getBottomBound(), getBackBound(), getFrontBound()};
+        return bounds;
     }
 
     public void setX(int x) {
@@ -90,6 +148,84 @@ public class Physical {
         this.weight = amt;
     }
 
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public void setStroke(Color stroke) {
+        this.stroke = stroke;
+    }
+
+    public void setLeftBound(int amt) {
+        leftX = amt;
+    }
+
+    public void setRightBound(int amt) {
+        rightX = amt;
+    }
+
+    public void setTopBound(int amt) {
+        topY = amt;
+    }
+
+    public void setBottomBound(int amt) {
+        bottomY = amt;
+    }
+
+    public void setBackBound(int amt) {
+        backZ = amt;
+    }
+
+    public void setFrontBound(int amt) {
+        frontZ = amt;
+    }
+
+    public void setBounds(int[] bounds) {
+        setLeftBound(bounds[0]);
+        setRightBound(bounds[1]);
+        setTopBound(bounds[2]);
+        setBottomBound(bounds[3]);
+        setBackBound(bounds[4]);
+        setFrontBound(bounds[5]);
+    }
+
+    public void invXVelocity() {
+        xVel = -xVel;
+    }
+
+    public void invYVelocity() {
+        yVel = -yVel;
+    }
+
+    public void invZVelocity() {
+        zVel = -zVel;
+    }
+
+    public void updatePosition() {
+        setX(getX() + getXVelocity());
+        setY(getY() + getYVelocity());
+        setZ(getZ() + getZVelocity());
+    }
+
+    /*
+     * @return next x, y, and z coordinates assuming no collision
+     */
+    public int[] getNextTheoreticalPosition() {
+        int[] nextPos = new int[3];
+        nextPos[0] = x + xVel;
+        nextPos[1] = y + yVel;
+        nextPos[2] = z + zVel;
+        return nextPos;
+    }
+
+    public int abs(int num){
+        return Math.abs(num);
+    }
+
+    public double abs(double num){
+        return Math.abs(num);
+    }
+
     public void collision(Physical other) {
         int xMom = xVel * weight;
         int yMom = yVel * weight;
@@ -97,7 +233,18 @@ public class Physical {
         int xMom2 = other.getXVelocity() * other.getWeight();
         int yMom2 = other.getYVelocity() * other.getWeight();
         int zMom2 = other.getZVelocity() * other.getWeight();
-        
+
+        // based off this: http://www.ww-p.org/common/pages/DisplayFile.aspx?itemId=8889217
+        int centerMassX = (xMom + xMom2) / (weight + other.getWeight());
+        int centerMassY = (yMom + yMom2) / (weight + other.getWeight());
+        int centerMassZ = (zMom + zMom2) / (weight + other.getWeight());
+
+        xVel = -xVel + 3 * centerMassX;
+        yVel = -yVel + 3 * centerMassY;
+        zVel = -zVel + 3 * centerMassZ;
+        other.setXVelocity(-other.getXVelocity() + 2 * centerMassX);
+        other.setYVelocity(-other.getYVelocity() + 2 * centerMassY);
+        other.setZVelocity(-other.getZVelocity() + 2 * centerMassZ);
     }
 }
 
