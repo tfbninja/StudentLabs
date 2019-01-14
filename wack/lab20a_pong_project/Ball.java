@@ -87,17 +87,7 @@ public class Ball extends Block implements Renderable, Updateable {
             checkCollideTop(bounds[1]);
             checkCollideTop(bounds[3]);
         }
-        /*
-         * for (Block b : collidables) {
-         * this.checkCollisions(b);
-         * if (this.inCollisionWith(b)) {
-         * System.out.println("In collision");
-         * toggleX();
-         * super.changeX(xSpeed * 2);
-         * toggleX();
-         * }
-         * }
-         */
+
         this.checkLeftPaddle(lP);
         this.checkRightPaddle(rP);
 
@@ -134,24 +124,37 @@ public class Ball extends Block implements Renderable, Updateable {
 
     public void checkLeftPaddle(Block b) {
         //int bX = b.getX(), bW = b.getWidth(), x = super.getX(), y = super.getY(), h = super.getHeight(), bY = b.getY(), bH = super.getHeight();
-        checkCollideRight(b);
+        checkCollideRightSide(b);
         checkCollideTop(b);
         checkCollideBottom(b);
     }
 
     public void checkRightPaddle(Block b) {
         int bX = b.getX(), bW = b.getWidth(), x = super.getX(), y = super.getY(), w = super.getWidth(), h = super.getHeight(), bY = b.getY(), bH = super.getHeight();
-        checkCollideLeft(b);
+        checkCollideLeftSide(b);
         checkCollideTop(b);
         checkCollideBottom(b);
     }
 
-    public void checkCollideRight(Block b) {
+    public void checkCollideLeftSide(Block b) {
         int bX = b.getX(), bW = b.getWidth(), x = super.getX(), w = super.getWidth(), y = super.getY(), h = super.getHeight(), bY = b.getY(), bH = super.getHeight();
         x += xSpeed;
         y += ySpeed;
         if (x + w >= bX && x < bX) {
             if (y + h > bY && y < bY + bH) {
+                x -= xSpeed;
+                toggleX();
+            }
+        }
+    }
+
+    public void checkCollideRightSide(Block b) {
+        int bX = b.getX(), bW = b.getWidth(), x = super.getX(), w = super.getWidth(), y = super.getY(), h = super.getHeight(), bY = b.getY(), bH = super.getHeight();
+        x += xSpeed;
+        y += ySpeed;
+        if (x <= bX + bW && x > bX + bW) {
+            if (y + h > bY && y < bY + bH) {
+                x -= xSpeed;
                 toggleX();
             }
         }
@@ -208,19 +211,6 @@ public class Ball extends Block implements Renderable, Updateable {
         x += xSpeed;
         if (x + w >= xLine && x < xLine) {
             toggleX();
-        }
-    }
-
-    public void checkCollisions(Block b) {
-        if (xSpeed < 0) {
-            checkCollideLeft(b);
-        } else {
-            checkCollideRight(b);
-        }
-        if (ySpeed < 0) {
-            checkCollideTop(b);
-        } else {
-            checkCollideBottom(b);
         }
     }
 
