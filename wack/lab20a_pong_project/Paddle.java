@@ -11,8 +11,7 @@ public class Paddle extends Block implements Renderable, Updateable {
 
     private int speed;
     private int velocity = 0;
-    // private String direction; // why... so unnecessary. Remember Algebra 1 when we learned about negative numbers? yeah....
-    // there is no need to use volatile string commands here... always use math when possible
+    private Ball ball;
 
     public Paddle() {
         super(10, 10, 10, 40, Color.BLACK);
@@ -26,6 +25,10 @@ public class Paddle extends Block implements Renderable, Updateable {
     public Paddle(int x, int y, int w, int h, Color color, int speed) {
         this(x, y, w, h, color);
         this.speed = speed;
+    }
+
+    public void setBall(Ball b) {
+        this.ball = b;
     }
 
     public void up() {
@@ -69,9 +72,28 @@ public class Paddle extends Block implements Renderable, Updateable {
                 super.changeY(velocity);
             }
         }
+        collideBall();
 
-        super.draw(canvas,
-                super.getColor());
+        super.draw(canvas, super.getColor());
+    }
+
+    public void collideBall() {
+        int bX = ball.getX(), bW = ball.getWidth(), x = super.getX(), y = super.getY(), w = super.getWidth(), h = super.getHeight(), bY = ball.getY(), bH = super.getHeight();
+        if (ball.getXSpeed() < 0) {
+            // right side
+            if (bX <= x + w && bX > x) {
+                if (bY < y + h && bY + bH >= y) {
+                    ball.setXSpeed(-Math.abs(ball.getXSpeed()));
+                }
+            }
+        } else {
+            // left side
+            if (bX + bW >= x && bX < x) {
+                if (bY < y && bY + bH <= y + h) {
+                    ball.setXSpeed(-Math.abs(ball.getXSpeed()));
+                }
+            }
+        }
     }
 
     @Override

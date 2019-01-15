@@ -50,6 +50,8 @@ public class PaddleTestTwo extends Application {
         right.setYBounds(0, HEIGHT);
 
         ball.addPaddles(left, right);
+        left.setBall(ball);
+        right.setBall(ball);
 
         Scene scene = new Scene(root, WIDTH, HEIGHT);
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
