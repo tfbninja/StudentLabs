@@ -188,15 +188,31 @@ public class Ball extends Block implements Renderable, Updateable {
 
     public boolean checkCollideLeftSide(Block b) {
         int bX = b.getX(), bW = b.getWidth(), x = super.getX(), w = super.getWidth(), y = super.getY(), h = super.getHeight(), bY = b.getY(), bH = b.getHeight();
-        if (x + w >= bX) {
-            if (y + h > bY && y < bY + bH) {
-                //double[] newSpeeds = newVelocitiesTrigCollision((Paddle) b);
-                //xSpeed = Math.abs(newSpeeds[0]);
-                //ySpeed = newSpeeds[1];
-                xSpeed = -Math.abs(xSpeed);
-                super.changeX(xSpeed);
-                //super.changeY(ySpeed);
-                return true;
+        if (Math.abs(xSpeed) >= bW) {
+            x += xSpeed;
+            y += ySpeed;
+            if (x + w >= bX) {
+                if (y + h > bY && y < bY + bH) {
+                    //double[] newSpeeds = newVelocitiesTrigCollision((Paddle) b);
+                    //xSpeed = Math.abs(newSpeeds[0]);
+                    //ySpeed = newSpeeds[1];
+                    xSpeed = -Math.abs(xSpeed);
+                    super.changeX(xSpeed);
+                    //super.changeY(ySpeed);
+                    return true;
+                }
+            }
+        } else {
+            if (x + w >= bX) {
+                if (y + h > bY && y < bY + bH) {
+                    //double[] newSpeeds = newVelocitiesTrigCollision((Paddle) b);
+                    //xSpeed = Math.abs(newSpeeds[0]);
+                    //ySpeed = newSpeeds[1];
+                    xSpeed = -Math.abs(xSpeed);
+                    super.changeX(xSpeed);
+                    //super.changeY(ySpeed);
+                    return true;
+                }
             }
         }
         return false;

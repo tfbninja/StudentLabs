@@ -12,6 +12,7 @@ public class Paddle extends Block implements Renderable, Updateable {
     private int speed;
     private int velocity = 0;
     private Ball ball;
+    private double speedRatio;
 
     public Paddle() {
         super(10, 10, 10, 40, Color.BLACK);
@@ -29,6 +30,7 @@ public class Paddle extends Block implements Renderable, Updateable {
 
     public void setBall(Ball b) {
         this.ball = b;
+        speedRatio = speed / Math.sqrt(Math.pow(ball.getXSpeed(), 2) + Math.pow(ball.getYSpeed(), 2));
     }
 
     public void up() {
@@ -59,22 +61,30 @@ public class Paddle extends Block implements Renderable, Updateable {
         velocity = amt;
     }
 
+    public double calcBallSpeed(Ball ball) {
+        return Math.sqrt(Math.pow(ball.getXSpeed(), 2) + Math.pow(ball.getYSpeed(), 2));
+    }
+
     @Override
     public void update(Canvas canvas) {
+        speed = (int) (calcBallSpeed(ball) * speedRatio);
         if (velocity < 0) {
             if (!super.getYBoundsOn() || super.getY() > super.getMinY()) {
                 super.changeY(velocity);
             }
+
         }
 
-        if (velocity > 0) {
+        if (velocity
+                > 0) {
             if (!super.getYBoundsOn() || super.getY() + super.getHeight() < super.getMaxY()) {
                 super.changeY(velocity);
             }
         }
         //collideBall();
 
-        super.draw(canvas, super.getColor());
+        super.draw(canvas,
+                super.getColor());
     }
 
     public void collideBall() {

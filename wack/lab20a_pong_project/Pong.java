@@ -35,12 +35,12 @@ public class Pong extends Application {
     private int paddleMargin = 25;
     private int paddleHeight = 125;
     private int paddleWidth = 35;
-    private Block bg = new Block(0, 0, width, height, Color.CHOCOLATE);
+    private Block bg = new Block(0, 0, width, height, Color.BLACK);
     private Ball ball;
     private Paddle left;
     private Paddle right;
 
-    private double apprxmtBallStartingSpeed = 9.0;
+    private double apprxmtBallStartingSpeed = 3.0;
     private double ballAccelerationPerHit = 1;
 
     private int paddleSpeed = 6;
@@ -48,7 +48,7 @@ public class Pong extends Application {
     private boolean paused = true;
     private int keyHits = 0;
     private final boolean AI = true;
-    private final boolean rAI = false;
+    private final boolean rAI = true;
     private static boolean devPerms = false;
     private double xVel = apprxmtBallStartingSpeed;
     private double yVel = apprxmtBallStartingSpeed;
@@ -195,29 +195,23 @@ public class Pong extends Application {
     }
 
     public double finalBallYPos(double ballX, double ballY, double ballXSpeed, double ballYSpeed, double ballWidth, double targetXPos) {
-        if (ballX > targetXPos) {
-            while (!withinMargin(ballX, targetXPos, ballWidth)) {
-                if (ballY > canvas.getHeight() || ballY < 0) {
-                    ballYSpeed = -ballYSpeed;
-                }
-                ballX += ballXSpeed;
-                ballY += ballYSpeed;
+        while (!withinMargin(ballX, targetXPos, ballWidth) && ballX > targetXPos) {
+            if (ballY > canvas.getHeight() || ballY < 0) {
+                ballYSpeed = -ballYSpeed;
             }
-            return ballY;
+            ballX += ballXSpeed;
+            ballY += ballYSpeed;
         }
         return ballY;
     }
 
     public double rFinalBallYPos(double ballX, double ballY, double ballXSpeed, double ballYSpeed, double ballWidth, double targetXPos) {
-        if (ballX < targetXPos) {
-            while (!withinMargin(ballX, targetXPos, ballWidth)) {
-                if (ballY > canvas.getHeight() || ballY < 0) {
-                    ballYSpeed = -ballYSpeed;
-                }
-                ballX += ballXSpeed;
-                ballY += ballYSpeed;
+        while (!withinMargin(ballX, targetXPos, ballWidth) && ballX < targetXPos) {
+            if (ballY > canvas.getHeight() || ballY < 0) {
+                ballYSpeed = -ballYSpeed;
             }
-            return ballY;
+            ballX += ballXSpeed;
+            ballY += ballYSpeed;
         }
         return ballY;
     }
@@ -237,7 +231,7 @@ public class Pong extends Application {
         } else {
             moveToY = bY - h + bW;
         }
-        if (!withinMargin(y, moveToY, 3)) {
+        if (!withinMargin(y, moveToY, self.getSpeed())) {
             if (y < moveToY) {
                 self.down();
             } else {
@@ -262,7 +256,7 @@ public class Pong extends Application {
         } else {
             moveToY = bY - h + bW;
         }
-        if (!withinMargin(y, moveToY, 3)) {
+        if (!withinMargin(y, moveToY, self.getSpeed())) {
             if (y < moveToY) {
                 self.down();
             } else {
@@ -294,13 +288,18 @@ public class Pong extends Application {
 
                 // draw ball speed (debug only)
                 /*
-                gc.setFont(new Font("Impact", 25));
-                try {
-                    gc.fillText("X speed: " + String.valueOf(ball.getXSpeed()).substring(0, 5) + ", Y speed: " + String.valueOf(ball.getYSpeed()).substring(0, 5), width / 2 - gc.getFont().getSize() / 2 * 15, 150);
-                } catch (StringIndexOutOfBoundsException e) {
-                    gc.fillText("X speed: " + ball.getXSpeed() + ", Y speed: " + ball.getYSpeed(), width / 2 - gc.getFont().getSize() / 2 * 15, 150);
-
-                }
+                 * gc.setFont(new Font("Impact", 25));
+                 * try {
+                 * gc.fillText("X speed: " +
+                 * String.valueOf(ball.getXSpeed()).substring(0, 5) + ", Y
+                 * speed: " + String.valueOf(ball.getYSpeed()).substring(0, 5),
+                 * width / 2 - gc.getFont().getSize() / 2 * 15, 150);
+                 * } catch (StringIndexOutOfBoundsException e) {
+                 * gc.fillText("X speed: " + ball.getXSpeed() + ", Y speed: " +
+                 * ball.getYSpeed(), width / 2 - gc.getFont().getSize() / 2 *
+                 * 15, 150);
+                 *
+                 * }
                  */
                 left.update(canvas);
                 right.update(canvas);
