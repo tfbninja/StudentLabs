@@ -9,6 +9,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -34,7 +35,7 @@ public class Pong extends Application {
     private int paddleMargin = 15;
     private int paddleHeight = 100;
     private int paddleWidth = 25;
-    private Block bg = new Block(0, 0, width, height, Color.DARKGREY);
+    private Block bg = new Block(0, 0, width, height, Color.BLACK);
     private Ball ball;
     private Paddle left;
     private Paddle right;
@@ -44,10 +45,12 @@ public class Pong extends Application {
 
     private int paddleSpeed = 6;
 
-    private boolean paused = false;
-    private boolean preserveVelocities = false;
-    private double xVel = 0.0;
-    private double yVel = 0.0;
+    private boolean paused = true;
+    private int keyHits = 0;
+    private final boolean AI = true;
+    private static boolean devPerms = false;
+    private double xVel = apprxmtBallStartingSpeed;
+    private double yVel = apprxmtBallStartingSpeed;
 
     @Override
     public void start(Stage primaryStage) {
@@ -86,17 +89,23 @@ public class Pong extends Application {
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
+                if (keyHits == 0) {
+                    paused = false;
+                }
+                keyHits++;
                 if (event.getCode() == KeyCode.UP) {
                     right.up();
                 }
                 if (event.getCode() == KeyCode.DOWN) {
                     right.down();
                 }
-                if (event.getCode() == KeyCode.W) {
-                    left.up();
-                }
-                if (event.getCode() == KeyCode.S) {
-                    left.down();
+                if (!AI) {
+                    if (event.getCode() == KeyCode.W) {
+                        left.up();
+                    }
+                    if (event.getCode() == KeyCode.S) {
+                        left.down();
+                    }
                 }
             }
         });
@@ -113,12 +122,22 @@ public class Pong extends Application {
                 } else if (event.isSecondaryButtonDown()) {
                     xVel = ball.getXSpeed();
                     yVel = ball.getYSpeed();
+                } else if (event.isMiddleButtonDown()) {
+                    enableDevPerms();
                 }
             }
         });
-        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+        scene.setOnScrollStarted(new EventHandler< ScrollEvent>() {
             @Override
-            public void handle(KeyEvent event) {
+            public void handle(ScrollEvent event) {
+                disableDevPerms();
+            }
+        });
+        scene.setOnKeyReleased(
+                new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event
+            ) {
                 if (event.getCode() == KeyCode.UP) {
                     right.stop();
                 }
@@ -138,11 +157,16 @@ public class Pong extends Application {
                     primaryStage.setTitle("Pranked");
                 }
             }
-        });
-        primaryStage.setTitle("The game of realizing that you should probably go outside and play some tennis or badminton.");
-        primaryStage.setFullScreenExitHint("Press F11 to exit full screen...or don't");
+        }
+        );
+        primaryStage.setTitle(
+                "The game of realizing that you should probably go outside and play some tennis or badminton.");
+        primaryStage.setFullScreenExitHint(
+                "Press F11 to exit full screen...or don't");
         primaryStage.setScene(scene);
+
         primaryStage.show();
+
         timer.start();
     }
 
@@ -151,6 +175,48 @@ public class Pong extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public static void enableDevPerms() {
+        devPerms = true;
+    }
+
+    public static void disableDevPerms() {
+        devPerms = false;
+    }
+
+    public boolean withinMargin(double amt, double target, double margin) {
+        return amt > target - margin && amt < target + margin;
+    }
+
+    public double finalBallYPos(double ballX, double ballY, double ballXSpeed, double ballYSpeed, double ballWidth, double targetXPos) {
+        while (!withinMargin(ballX, targetXPos, ballWidth)) {
+            if (ballY > canvas.getHeight() || ballY < 0) {
+                ballYSpeed = -ballYSpeed;
+            }
+            ballX += ballXSpeed;
+            ballY += ballYSpeed;
+        }
+        return ballY;
+    }
+
+    public void compute(Ball b, Paddle self) {
+        double x = self.getX(), y = self.getY(), w = self.getWidth(), h = self.getHeight(), bX = b.getX(), bY = b.getY(), bW = b.getWidth(), bH = b.getHeight(), bXS = b.getXSpeed(), bYS = b.getYSpeed();
+        double moveToY;
+        if (bXS < 0) {
+            moveToY = finalBallYPos(bX, bY, bXS, bYS, bW, x + w);
+        } else {
+            moveToY = bY - h + bW;
+        }
+        if (!withinMargin(y, moveToY, 5)) {
+            if (y < moveToY) {
+                self.down();
+            } else {
+                self.up();
+            }
+        } else {
+            self.stop();
+        }
     }
 
     public class RedrawTimer extends AnimationTimer {
@@ -167,6 +233,9 @@ public class Pong extends Application {
             bg.setHeight(height);
              */
             if (!paused) {
+                if (AI) {
+                    compute(ball, left);
+                }
                 GraphicsContext gc = canvas.getGraphicsContext2D();
                 bg.draw(canvas, bg.getColor()); // clear background
                 gc.setFont(new Font("Impact", 50));
