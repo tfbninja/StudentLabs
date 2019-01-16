@@ -121,8 +121,11 @@ public class Ball extends Block implements Renderable, Updateable {
             checkCollideRight(bounds[2]);
         }
         if (super.getYBoundsOn()) {
-            checkCollideTop(bounds[1]);
-            checkCollideTop(bounds[3]);
+            if (ySpeed < 0) {
+                checkCollideTop(bounds[1]);
+            } else {
+                checkCollideBottom(bounds[3]);
+            }
         }
         if (this.checkLeftPaddle(lP) || this.checkRightPaddle(rP)) {
             if (this.xSpeed > 0) {
@@ -155,6 +158,24 @@ public class Ball extends Block implements Renderable, Updateable {
         return false;
     }
 
+    public double[] newVelocitiesTrigCollision(Paddle paddle) {
+        double minAngle = 120, maxAngle = 240, middleMargin = 5;
+        double midY = super.getY() + super.getWidth() / 2, pMinY = paddle.getY() - super.getHeight() / 2, pMaxY = paddle.getY() + super.getHeight() / 2;
+        double ratio = midY / (pMaxY - pMinY);
+        double calcAngle = ratio * (maxAngle - minAngle) + minAngle;
+        if (calcAngle > 180 - middleMargin && calcAngle < 180 + middleMargin) {
+            if (calcAngle < 180) {
+                calcAngle -= middleMargin;
+            } else {
+                calcAngle += middleMargin;
+            }
+        }
+        double rawXS = Math.sin(calcAngle), rawYS = Math.cos(calcAngle);
+        double newXS = rawXS * (Math.abs(xSpeed) + speedIncrement), newYS = rawYS * (Math.abs(ySpeed) + speedIncrement);
+        double[] speeds = {newXS, newYS};
+        return speeds;
+    }
+
     public boolean checkLeftPaddle(Block b) {
         //int bX = b.getX(), bW = b.getWidth(), x = super.getX(), y = super.getY(), h = super.getHeight(), bY = b.getY(), bH = super.getHeight();
         return checkCollideRightSide(b);
@@ -167,10 +188,14 @@ public class Ball extends Block implements Renderable, Updateable {
 
     public boolean checkCollideLeftSide(Block b) {
         int bX = b.getX(), bW = b.getWidth(), x = super.getX(), w = super.getWidth(), y = super.getY(), h = super.getHeight(), bY = b.getY(), bH = b.getHeight();
-        if (x + w >= bX && x < bX + 0.5 * bW) {
+        if (x + w >= bX) {
             if (y + h > bY && y < bY + bH) {
+                //double[] newSpeeds = newVelocitiesTrigCollision((Paddle) b);
+                //xSpeed = Math.abs(newSpeeds[0]);
+                //ySpeed = newSpeeds[1];
                 xSpeed = -Math.abs(xSpeed);
                 super.changeX(xSpeed);
+                //super.changeY(ySpeed);
                 return true;
             }
         }
@@ -179,10 +204,14 @@ public class Ball extends Block implements Renderable, Updateable {
 
     public boolean checkCollideRightSide(Block b) {
         int bX = b.getX(), bW = b.getWidth(), x = super.getX(), w = super.getWidth(), y = super.getY(), h = super.getHeight(), bY = b.getY(), bH = b.getHeight();
-        if (x <= bX + bW && x > bX + 0.5 * bW) {
+        if (x <= bX + bW) {
             if (y + h > bY && y < bY + bH) {
+                //double[] newSpeeds = newVelocitiesTrigCollision((Paddle) b);
+                //xSpeed = -Math.abs(newSpeeds[0]);
+                //ySpeed = newSpeeds[1];
                 xSpeed = Math.abs(xSpeed);
                 super.changeX(xSpeed);
+                //super.changeY(ySpeed);
                 return true;
             }
         }
@@ -220,8 +249,9 @@ public class Ball extends Block implements Renderable, Updateable {
     public boolean checkCollideTop(int yLine) {
         int y = super.getY(), h = super.getHeight();
         y += ySpeed;
-        if (y <= yLine && y + h > yLine) {
+        if (y <= yLine && ySpeed < 0) {
             ySpeed = -ySpeed;
+            super.changeY(ySpeed);
             return true;
         }
         return false;
@@ -230,8 +260,9 @@ public class Ball extends Block implements Renderable, Updateable {
     public boolean checkCollideBottom(int yLine) {
         int y = super.getY(), h = super.getHeight();
         y += ySpeed;
-        if (y + h >= yLine && y < yLine) {
+        if (y + h >= yLine && ySpeed > 0) {
             ySpeed = -ySpeed;
+            super.changeY(ySpeed);
             return true;
         }
         return false;

@@ -32,22 +32,23 @@ public class Pong extends Application {
     RedrawTimer timer = new RedrawTimer();
     private int leftScore = 0;
     private int rightScore = 0;
-    private int paddleMargin = 15;
-    private int paddleHeight = 100;
-    private int paddleWidth = 25;
-    private Block bg = new Block(0, 0, width, height, Color.BLACK);
+    private int paddleMargin = 25;
+    private int paddleHeight = 125;
+    private int paddleWidth = 35;
+    private Block bg = new Block(0, 0, width, height, Color.CHOCOLATE);
     private Ball ball;
     private Paddle left;
     private Paddle right;
 
-    private double apprxmtBallStartingSpeed = 5.0;
-    private double ballAccelerationPerHit = 0.5;
+    private double apprxmtBallStartingSpeed = 9.0;
+    private double ballAccelerationPerHit = 1;
 
     private int paddleSpeed = 6;
 
     private boolean paused = true;
     private int keyHits = 0;
     private final boolean AI = true;
+    private final boolean rAI = false;
     private static boolean devPerms = false;
     private double xVel = apprxmtBallStartingSpeed;
     private double yVel = apprxmtBallStartingSpeed;
@@ -93,11 +94,13 @@ public class Pong extends Application {
                     paused = false;
                 }
                 keyHits++;
-                if (event.getCode() == KeyCode.UP) {
-                    right.up();
-                }
-                if (event.getCode() == KeyCode.DOWN) {
-                    right.down();
+                if (!rAI) {
+                    if (event.getCode() == KeyCode.UP) {
+                        right.up();
+                    }
+                    if (event.getCode() == KeyCode.DOWN) {
+                        right.down();
+                    }
                 }
                 if (!AI) {
                     if (event.getCode() == KeyCode.W) {
@@ -115,19 +118,21 @@ public class Pong extends Application {
                 int mX = (int) event.getX();
                 int mY = (int) event.getY();
                 if (event.isPrimaryButtonDown()) {
-                    ball.setXPos(mX);
-                    ball.setYPos(mY);
-                    ball.setXSpeed(xVel);
-                    ball.setYSpeed(yVel);
+                    if (devPerms) {
+                        ball.setXPos(mX);
+                        ball.setYPos(mY);
+                        ball.setXSpeed(xVel);
+                        ball.setYSpeed(yVel);
+                    }
                 } else if (event.isSecondaryButtonDown()) {
                     xVel = ball.getXSpeed();
                     yVel = ball.getYSpeed();
-                } else if (event.isMiddleButtonDown()) {
+                } else if (event.isAltDown()) {
                     enableDevPerms();
                 }
             }
         });
-        scene.setOnScrollStarted(new EventHandler< ScrollEvent>() {
+        scene.setOnScroll(new EventHandler<ScrollEvent>() {
             @Override
             public void handle(ScrollEvent event) {
                 disableDevPerms();
@@ -190,12 +195,29 @@ public class Pong extends Application {
     }
 
     public double finalBallYPos(double ballX, double ballY, double ballXSpeed, double ballYSpeed, double ballWidth, double targetXPos) {
-        while (!withinMargin(ballX, targetXPos, ballWidth)) {
-            if (ballY > canvas.getHeight() || ballY < 0) {
-                ballYSpeed = -ballYSpeed;
+        if (ballX > targetXPos) {
+            while (!withinMargin(ballX, targetXPos, ballWidth)) {
+                if (ballY > canvas.getHeight() || ballY < 0) {
+                    ballYSpeed = -ballYSpeed;
+                }
+                ballX += ballXSpeed;
+                ballY += ballYSpeed;
             }
-            ballX += ballXSpeed;
-            ballY += ballYSpeed;
+            return ballY;
+        }
+        return ballY;
+    }
+
+    public double rFinalBallYPos(double ballX, double ballY, double ballXSpeed, double ballYSpeed, double ballWidth, double targetXPos) {
+        if (ballX < targetXPos) {
+            while (!withinMargin(ballX, targetXPos, ballWidth)) {
+                if (ballY > canvas.getHeight() || ballY < 0) {
+                    ballYSpeed = -ballYSpeed;
+                }
+                ballX += ballXSpeed;
+                ballY += ballYSpeed;
+            }
+            return ballY;
         }
         return ballY;
     }
@@ -204,11 +226,43 @@ public class Pong extends Application {
         double x = self.getX(), y = self.getY(), w = self.getWidth(), h = self.getHeight(), bX = b.getX(), bY = b.getY(), bW = b.getWidth(), bH = b.getHeight(), bXS = b.getXSpeed(), bYS = b.getYSpeed();
         double moveToY;
         if (bXS < 0) {
-            moveToY = finalBallYPos(bX, bY, bXS, bYS, bW, x + w);
+            moveToY = finalBallYPos(bX, bY, bXS, bYS, bW, x + w) - self.getHeight() / 2 + b.getHeight() / 2;
+            if (Math.abs(b.getYSpeed()) > 13) {
+                // danger zone
+                moveToY += b.getYSpeed();
+            }
+
+        } else if (bXS == 0) {
+            moveToY = height / 2;
         } else {
             moveToY = bY - h + bW;
         }
-        if (!withinMargin(y, moveToY, 5)) {
+        if (!withinMargin(y, moveToY, 3)) {
+            if (y < moveToY) {
+                self.down();
+            } else {
+                self.up();
+            }
+        } else {
+            self.stop();
+        }
+    }
+
+    public void rCompute(Ball b, Paddle self) {
+        double x = self.getX(), y = self.getY(), w = self.getWidth(), h = self.getHeight(), bX = b.getX(), bY = b.getY(), bW = b.getWidth(), bH = b.getHeight(), bXS = b.getXSpeed(), bYS = b.getYSpeed();
+        double moveToY;
+        if (bXS > 0) {
+            moveToY = rFinalBallYPos(bX, bY, bXS, bYS, bW, x + w) - self.getHeight() / 2 + b.getHeight();
+            if (Math.abs(b.getYSpeed()) > 13) {
+                // danger zone
+                moveToY += b.getYSpeed();
+            }
+        } else if (bXS == 0) {
+            moveToY = height / 2;
+        } else {
+            moveToY = bY - h + bW;
+        }
+        if (!withinMargin(y, moveToY, 3)) {
             if (y < moveToY) {
                 self.down();
             } else {
@@ -223,27 +277,23 @@ public class Pong extends Application {
 
         @Override
         public void handle(long now) {
-            /*
-            Rectangle2D border = Screen.getPrimary().getBounds();
-            width = (int) border.getWidth();
-            height = (int) border.getHeight();
-            canvas.setWidth(width);
-            canvas.setHeight(height);
-            bg.setWidth(width);
-            bg.setHeight(height);
-             */
+            GraphicsContext gc = canvas.getGraphicsContext2D();
+            bg.draw(canvas, bg.getColor()); // clear background
+            gc.setFont(new Font("Impact", 50));
+            gc.setFill(bg.getColor().invert()); // 'cuz dark theme kicks butt
+            // draw scores
+            gc.fillText("" + leftScore, width / 2 - 100 - gc.getFont().getSize() / 2, 50);
+            gc.fillText("" + rightScore, width / 2 + 100, 50);
             if (!paused) {
                 if (AI) {
                     compute(ball, left);
                 }
-                GraphicsContext gc = canvas.getGraphicsContext2D();
-                bg.draw(canvas, bg.getColor()); // clear background
-                gc.setFont(new Font("Impact", 50));
-                gc.setFill(bg.getColor().invert()); // 'cuz dark theme kicks butt
-                // draw scores
-                gc.fillText("" + leftScore, width / 2 - 100 - gc.getFont().getSize() / 2, 50);
-                gc.fillText("" + rightScore, width / 2 + 100, 50);
+                if (rAI) {
+                    rCompute(ball, right);
+                }
+
                 // draw ball speed (debug only)
+                /*
                 gc.setFont(new Font("Impact", 25));
                 try {
                     gc.fillText("X speed: " + String.valueOf(ball.getXSpeed()).substring(0, 5) + ", Y speed: " + String.valueOf(ball.getYSpeed()).substring(0, 5), width / 2 - gc.getFont().getSize() / 2 * 15, 150);
@@ -251,7 +301,7 @@ public class Pong extends Application {
                     gc.fillText("X speed: " + ball.getXSpeed() + ", Y speed: " + ball.getYSpeed(), width / 2 - gc.getFont().getSize() / 2 * 15, 150);
 
                 }
-
+                 */
                 left.update(canvas);
                 right.update(canvas);
                 ball.update(canvas);
