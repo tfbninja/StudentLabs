@@ -43,6 +43,14 @@ public class Block implements Renderable {
         yPos += byHowMuch;
     }
 
+    public void changeX(double byHowMuch) {
+        xPos += byHowMuch;
+    }
+
+    public void changeY(double byHowMuch) {
+        yPos += byHowMuch;
+    }
+
     public void setBounds(int leftX, int topY, int rightX, int bottomY) {
         this.xBounds = true;
         this.yBounds = true;

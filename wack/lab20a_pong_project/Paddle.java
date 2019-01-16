@@ -72,7 +72,7 @@ public class Paddle extends Block implements Renderable, Updateable {
                 super.changeY(velocity);
             }
         }
-        collideBall();
+        //collideBall();
 
         super.draw(canvas, super.getColor());
     }
@@ -80,14 +80,14 @@ public class Paddle extends Block implements Renderable, Updateable {
     public void collideBall() {
         int bX = ball.getX(), bW = ball.getWidth(), x = super.getX(), y = super.getY(), w = super.getWidth(), h = super.getHeight(), bY = ball.getY(), bH = super.getHeight();
         if (ball.getXSpeed() < 0) {
-            // right side
-            if (bX <= x + w && bX > x) {
+            // right paddle
+            if (bX <= x + w && bX >= x) {
                 if (bY < y + h && bY + bH >= y) {
                     ball.setXSpeed(-Math.abs(ball.getXSpeed()));
                 }
             }
         } else {
-            // left side
+            // left paddle
             if (bX + bW >= x && bX < x) {
                 if (bY < y && bY + bH <= y + h) {
                     ball.setXSpeed(-Math.abs(ball.getXSpeed()));
