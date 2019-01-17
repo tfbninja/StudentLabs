@@ -40,11 +40,11 @@ public class Pong extends Application {
     private Paddle left;
     private Paddle right;
 
-    private double apprxmtBallStartingSpeed = 3.5;
-    private double ballAccelerationPerHit = 0.6;
+    private double apprxmtBallStartingSpeed = 20.2;
+    private double ballAccelerationPerHit = 0.01;
     private double topPaddleSpeed = 25;
 
-    private int paddleSpeed = 7;
+    private int paddleSpeed = 22;
     private boolean paddleKeepsRatio = true;
 
     private boolean paused = true;
@@ -54,6 +54,9 @@ public class Pong extends Application {
     private static boolean devPerms = false;
     private double xVel = apprxmtBallStartingSpeed;
     private double yVel = apprxmtBallStartingSpeed;
+
+    private Color ballColor = Color.LAWNGREEN;
+    private int frame = 0;
 
     @Override
     public void start(Stage primaryStage) {
@@ -74,7 +77,7 @@ public class Pong extends Application {
         StackPane root = new StackPane();
 
         root.getChildren().add(canvas);
-        ball = new Ball(width / 2, height / 2, 20, 20, Color.LAWNGREEN, apprxmtBallStartingSpeed, ballAccelerationPerHit);
+        ball = new Ball(width / 2, height / 2, 20, 20, ballColor, apprxmtBallStartingSpeed, ballAccelerationPerHit);
         ball.setBounds(0, 0, width, height);
 
         //instantiate a left Paddle
@@ -280,6 +283,7 @@ public class Pong extends Application {
 
         @Override
         public void handle(long now) {
+            frame++;
             GraphicsContext gc = canvas.getGraphicsContext2D();
             bg.draw(canvas, bg.getColor()); // clear background
             gc.setFont(new Font("Impact", 50));
@@ -301,6 +305,10 @@ public class Pong extends Application {
                 left.update(canvas);
                 right.update(canvas);
                 ball.update(canvas);
+
+                if (frame % 5 == 0) {
+                    ball.setColor(ball.getColor().invert());
+                }
 
                 int scoreChange = ball.pongBehavior();
                 if (scoreChange == -1) {

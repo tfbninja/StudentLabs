@@ -18,7 +18,7 @@ class BallTestOne {
         Ball one = new Ball();
         out.println(one);
 
-        Ball two = new Ball(100, 100, 30, 50, Color.BLUE);
+        Ball two = new Ball(100, 100, 30, 50, Color.BLUE, 0 , 0);
         out.println(two);
 
         //x, y, wid, ht, color, xSpd, ySpd

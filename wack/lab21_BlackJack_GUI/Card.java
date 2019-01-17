@@ -1,8 +1,3 @@
-// A+ Computer Science  -  www.apluscompsci.com
-//Name -
-//Date - 
-//Class -
-//Lab  -
 package lab21_BlackJack_GUI;
 
 import java.io.File;
@@ -42,7 +37,7 @@ public abstract class Card {
             URL url = getClass().getResource("/images/" + name + ".jpg");
             image = ImageIO.read(url);
         } catch (Exception e) {
-            //feel free to do something here
+            System.out.println("can't load images... try setting the working directory?");
         }
     }
 
