@@ -140,7 +140,7 @@ public class Ball extends Block implements Renderable, Updateable {
             }
         }
 
-        draw(canvas, super.getColor());
+        //draw(canvas, super.getColor());
     }
 
     public boolean equals(Ball obj) {

@@ -26,8 +26,8 @@ public class Pong extends Application {
 
     private static int width = 800;
     private static int height = 600;
-    private static int smallW = 800;
-    private static int smallH = 600;
+    private static int smallW = 100;
+    private static int smallH = 100;
     private static Canvas canvas;
     RedrawTimer timer = new RedrawTimer();
     private int leftScore = 0;
@@ -41,14 +41,16 @@ public class Pong extends Application {
     private Paddle right;
 
     private double apprxmtBallStartingSpeed = 3.5;
-    private double ballAccelerationPerHit = 2;
+    private double ballAccelerationPerHit = 0.6;
+    private double topPaddleSpeed = 25;
 
     private int paddleSpeed = 7;
+    private boolean paddleKeepsRatio = true;
 
     private boolean paused = true;
     private int keyHits = 0;
     private final boolean AI = true;
-    private final boolean rAI = false;
+    private final boolean rAI = true;
     private static boolean devPerms = false;
     private double xVel = apprxmtBallStartingSpeed;
     private double yVel = apprxmtBallStartingSpeed;
@@ -78,10 +80,14 @@ public class Pong extends Application {
         //instantiate a left Paddle
         left = new Paddle(paddleMargin, height / 2 - paddleHeight / 2, paddleWidth, paddleHeight, Color.BLUE, paddleSpeed);
         left.setYBounds(0, height);
+        left.setKeepsSpeedRatio(paddleKeepsRatio);
+        left.setTopSpeed(topPaddleSpeed);
 
         //instantiate a right Paddle
         right = new Paddle(width - paddleMargin - paddleWidth, height / 2 - paddleHeight / 2, paddleWidth, paddleHeight, Color.RED, paddleSpeed);
         right.setYBounds(0, height);
+        right.setKeepsSpeedRatio(paddleKeepsRatio);
+        right.setTopSpeed(topPaddleSpeed);
 
         ball.addPaddles(left, right);
         left.setBall(ball);
@@ -109,6 +115,9 @@ public class Pong extends Application {
                     if (event.getCode() == KeyCode.S) {
                         left.down();
                     }
+                }
+                if (event.getCode() == KeyCode.ESCAPE) {
+                    primaryStage.close();
                 }
             }
         });
@@ -289,21 +298,6 @@ public class Pong extends Application {
                     rCompute(ball, right);
                 }
 
-                // draw ball speed (debug only)
-                /*
-                 * gc.setFont(new Font("Impact", 25));
-                 * try {
-                 * gc.fillText("X speed: " +
-                 * String.valueOf(ball.getXSpeed()).substring(0, 5) + ", Y
-                 * speed: " + String.valueOf(ball.getYSpeed()).substring(0, 5),
-                 * width / 2 - gc.getFont().getSize() / 2 * 15, 150);
-                 * } catch (StringIndexOutOfBoundsException e) {
-                 * gc.fillText("X speed: " + ball.getXSpeed() + ", Y speed: " +
-                 * ball.getYSpeed(), width / 2 - gc.getFont().getSize() / 2 *
-                 * 15, 150);
-                 *
-                 * }
-                 */
                 left.update(canvas);
                 right.update(canvas);
                 ball.update(canvas);
