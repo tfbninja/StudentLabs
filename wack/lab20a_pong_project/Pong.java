@@ -40,15 +40,15 @@ public class Pong extends Application {
     private Paddle left;
     private Paddle right;
 
-    private double apprxmtBallStartingSpeed = 3.0;
-    private double ballAccelerationPerHit = 1;
+    private double apprxmtBallStartingSpeed = 3.5;
+    private double ballAccelerationPerHit = 2;
 
-    private int paddleSpeed = 6;
+    private int paddleSpeed = 7;
 
     private boolean paused = true;
     private int keyHits = 0;
     private final boolean AI = true;
-    private final boolean rAI = true;
+    private final boolean rAI = false;
     private static boolean devPerms = false;
     private double xVel = apprxmtBallStartingSpeed;
     private double yVel = apprxmtBallStartingSpeed;
@@ -167,7 +167,7 @@ public class Pong extends Application {
         primaryStage.setTitle(
                 "The game of realizing that you should probably go outside and play some tennis or badminton.");
         primaryStage.setFullScreenExitHint(
-                "Press F11 to exit full screen...or don't");
+                "Press any key to begin");
         primaryStage.setScene(scene);
 
         primaryStage.show();
@@ -278,6 +278,9 @@ public class Pong extends Application {
             // draw scores
             gc.fillText("" + leftScore, width / 2 - 100 - gc.getFont().getSize() / 2, 50);
             gc.fillText("" + rightScore, width / 2 + 100, 50);
+            left.draw(canvas, left.getColor());
+            right.draw(canvas, right.getColor());
+            ball.draw(canvas, ball.getColor());
             if (!paused) {
                 if (AI) {
                     compute(ball, left);
