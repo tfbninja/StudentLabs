@@ -76,6 +76,20 @@ public class Deck {
         Collections.shuffle(cards);
     }
 
+    public void swap(ArrayList<Object> list, int a, int b) {
+        Object objA = list.get(a);
+        Object objB = list.get(b);
+        list.set(a, objB);
+        list.set(b, objA);
+    }
+
+    public void faroShuffle() {
+        // aka a perfect shuffle
+        for (int i = 0; i < cards.size() / 2; i++) {
+
+        }
+    }
+
     /**
      * Deals a card from this deck.
      *

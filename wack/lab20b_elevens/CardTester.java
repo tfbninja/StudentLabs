@@ -14,10 +14,17 @@ public class CardTester {
         Card aceHearts = new Card("ACE", "HEARTS", 1);
         Card jackSpades = new Card("jAcK", "Spades", 11);
         Card AceSpades = new Card("ace", "SPADES ", 1);
-        System.out.println(aceSpades.matches(aceHearts));
-        System.out.println(aceSpades.matches(jackSpades));
-        System.out.println(aceSpades.matches(AceSpades));
-        System.out.println(aceSpades);
-        System.out.println(AceSpades);
+        ArrayList<Card> cards = new ArrayList<>();
+        cards.add(aceSpades);
+        cards.add(aceHearts);
+        cards.add(jackSpades);
+        cards.add(AceSpades);
+        for (Card c : cards) {
+            System.out.println(c.toString() + " " + c.matches(aceHearts));
+            System.out.println(c.conciseToString());
+            System.out.println(c.pointValue());
+            System.out.println(c.rank());
+            System.out.println(c.suit());
+        }
     }
 }
