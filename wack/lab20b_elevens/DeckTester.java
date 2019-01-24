@@ -13,14 +13,21 @@ public class DeckTester {
     public static void main(String[] args) {
         Deck deck = new Deck();
         System.out.println(deck);
-        System.out.println(deck.deal());
+        deck.faroShuffle();
         System.out.println(deck);
-        deck.shuffle();
+        deck.faroShuffle();
         System.out.println(deck);
-        System.out.println(deck.deal());
-        System.out.println(deck.deal());
+        deck.faroShuffle();
         System.out.println(deck);
-        System.out.println(deck.deal());
+        deck.faroShuffle();
+        System.out.println(deck);
+        deck.faroShuffle();
+        System.out.println(deck);
+        deck.faroShuffle();
+        System.out.println(deck);
+        deck.faroShuffle();
+        System.out.println(deck);
+        deck.faroShuffle();
         System.out.println(deck);
     }
 }

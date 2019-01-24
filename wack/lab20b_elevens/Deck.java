@@ -83,10 +83,24 @@ public class Deck {
         list.set(b, objA);
     }
 
+    public void populateList(ArrayList<Card> fromList, ArrayList<Card> toList, int index1, int index2) {
+        for (int i = index1; i <= index2; i++) {
+            toList.add(fromList.get(i));
+        }
+    }
+
     public void faroShuffle() {
         // aka a perfect shuffle
-        for (int i = 0; i < cards.size() / 2; i++) {
-
+        ArrayList<Card> topPacket = new ArrayList<>();
+        ArrayList<Card> bottomPacket = new ArrayList<>();
+        populateList(cards, topPacket, 0, cards.size() / 2 - 1);
+        populateList(cards, bottomPacket, cards.size() / 2, cards.size() - 1);
+        System.out.println(topPacket.size());
+        System.out.println(bottomPacket.size());
+        cards.clear();
+        for (int i = 0; i < size / 2; i++) {
+            cards.add(topPacket.get(i));
+            cards.add(bottomPacket.get(i));
         }
     }
 
@@ -113,6 +127,8 @@ public class Deck {
     @Override
     public String toString() {
         String rtn = "size = " + size + "\nUndealt cards: \n";
+        System.out.println("size variable: " + size);
+        System.out.println("actual size: " + cards.size());
 
         for (int k = size - 1; k >= 0; k--) {
             rtn += cards.get(k).conciseToString();
