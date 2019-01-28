@@ -32,8 +32,8 @@ public class Card {
      * value of the card
      */
     public Card(String cardRank, String cardSuit, int cardPointValue) {
-        rank = cardRank.toUpperCase().trim();
-        suit = cardSuit.toUpperCase().trim();
+        rank = cardRank.toLowerCase().trim();
+        suit = cardSuit.toLowerCase().trim();
         pointValue = cardPointValue;
     }
 
@@ -73,15 +73,15 @@ public class Card {
     public static String intToRank(int ranknum) {
         switch (ranknum) {
             case 1:
-                return "A";
+                return "ace";
             case 10:
-                return "T";
+                return "ten";
             case 11:
-                return "J";
+                return "jack";
             case 12:
-                return "Q";
+                return "queen";
             case 13:
-                return "K";
+                return "king";
             default:
                 return String.valueOf(ranknum).substring(0, 1);
         }
@@ -90,13 +90,13 @@ public class Card {
     public static String intToSuit(int suitnum) {
         switch (suitnum) {
             case 1:
-                return "SPADES";
+                return "spades";
             case 2:
-                return "CLUBS";
+                return "clubs";
             case 3:
-                return "DIAMONDS";
+                return "diamonds";
             case 4:
-                return "HEARTS";
+                return "hearts";
             default:
                 return "Invalid suit specification " + suitnum;
         }

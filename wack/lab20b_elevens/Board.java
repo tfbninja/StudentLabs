@@ -37,7 +37,7 @@ public abstract class Board {
      */
     public Board(int size, String[] ranks, String[] suits, int[] pointValues, int sumToAmt) {
         cards = new Card[size];
-        deck = new Deck(ranks, suits, pointValues);
+        deck = new Deck();
         sumTo = sumToAmt;
         if (I_AM_DEBUGGING) {
             System.out.println(deck);
