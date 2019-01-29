@@ -75,7 +75,7 @@ public class Card {
             case 1:
                 return "ace";
             case 10:
-                return "ten";
+                return "10";
             case 11:
                 return "jack";
             case 12:

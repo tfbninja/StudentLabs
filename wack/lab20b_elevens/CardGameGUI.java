@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
@@ -18,6 +20,8 @@ import javax.swing.ImageIcon;
 import java.net.URL;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
+import javafx.scene.input.KeyCode;
 
 public class CardGameGUI extends JFrame implements ActionListener {
 
@@ -28,7 +32,7 @@ public class CardGameGUI extends JFrame implements ActionListener {
     /**
      * Width of the game frame.
      */
-    private static final int DEFAULT_WIDTH = 800;
+    private static final int DEFAULT_WIDTH = 850;
     /**
      * Width of a card.
      */
@@ -81,10 +85,13 @@ public class CardGameGUI extends JFrame implements ActionListener {
      */
     private static final int LABEL_HEIGHT_INC = 35;
 
+    private static int max_hints = 5;
+    private static final int REALMAXHINTS = 5;
+
     /**
      * The board (Board subclass).
      */
-    private Board board;
+    private ElevensBoard board;
 
     /**
      * The main panel containing the game components.
@@ -98,6 +105,9 @@ public class CardGameGUI extends JFrame implements ActionListener {
      * The Restart button.
      */
     private JButton restartButton;
+
+    private JButton hintButton;
+
     /**
      * The "number of undealt cards remain" message.
      */
@@ -118,6 +128,9 @@ public class CardGameGUI extends JFrame implements ActionListener {
      * The loss message.
      */
     private JLabel lossMsg;
+
+    private JLabel hintsMsg;
+    private boolean hintedThisReplace = false;
     /**
      * The coordinates of the card displays.
      */
@@ -136,12 +149,14 @@ public class CardGameGUI extends JFrame implements ActionListener {
      */
     private int totalGames;
 
+    private int hintsLeft = REALMAXHINTS;
+
     /**
      * Initialize the GUI.
      *
      * @param gameBoard is a <code>Board</code> subclass.
      */
-    public CardGameGUI(Board gameBoard) {
+    public CardGameGUI(ElevensBoard gameBoard) {
         board = gameBoard;
         totalWins = 0;
         totalGames = 0;
@@ -180,13 +195,18 @@ public class CardGameGUI extends JFrame implements ActionListener {
     /**
      * Draw the display (cards and messages).
      */
+    @Override
     public void repaint() {
+        hintsMsg.setText(hintsLeft + " hints left");
+        panel.setFocusable(true);
+
         for (int k = 0; k < board.size(); k++) {
             String cardImageFileName = imageFileName(board.cardAt(k), selections[k]);
             URL imageURL = getClass().getResource(cardImageFileName);
             if (imageURL != null) {
-                ImageIcon icon = new ImageIcon(imageURL);
-                displayCards[k].setIcon(icon);
+                ImageIcon boi = new ImageIcon(cardImageFileName);
+                ImageIcon icon = new ImageIcon();
+                displayCards[k].setIcon(boi);
                 displayCards[k].setVisible(true);
             } else {
                 throw new RuntimeException(
@@ -234,8 +254,44 @@ public class CardGameGUI extends JFrame implements ActionListener {
 
         this.setSize(new Dimension(DEFAULT_WIDTH, height));
         panel.setLayout(null);
-        panel.setPreferredSize(
-                new Dimension(DEFAULT_WIDTH - 20, height - 20));
+        panel.setPreferredSize(new Dimension(DEFAULT_WIDTH - 20, height - 20));
+        panel.setFocusable(true);
+        panel.addKeyListener(new KeyListener() {
+            public void keyTyped(KeyEvent ke) {
+            }
+
+            public void keyPressed(KeyEvent ke) {
+                int keyCode = ke.getKeyCode();
+                if (keyCode == KeyEvent.VK_H) {
+                    hintButton.doClick();
+                } else if (keyCode == KeyEvent.VK_ENTER) {
+                    //replaceButton.doClick();
+                } else if (keyCode == KeyEvent.VK_R) {
+                    restartButton.doClick();
+                    repaint();
+                } else if (ke.isShiftDown() && ke.isAltDown() && ke.isControlDown()) {
+                    System.out.println("cheat");
+                    hintsLeft++;
+                    repaint();
+                } else if (ke.isControlDown() && keyCode == KeyEvent.VK_SEMICOLON) {
+                    hintsLeft = 1000;
+                    for (int i = 0; i < 100; i++) {
+                        hintButton.doClick(1);
+                        replaceButton.doClick(1);
+                        if (i % 2 == 0) {
+                            panel.setFocusable(true);
+                        }
+                    }
+                    hintsLeft = REALMAXHINTS;
+                    repaint();
+                }
+            }
+
+            public void keyReleased(KeyEvent ke) {
+            }
+        });
+        panel.requestFocus();
+
         displayCards = new JLabel[board.size()];
         for (int k = 0; k < board.size(); k++) {
             displayCards[k] = new JLabel();
@@ -245,6 +301,14 @@ public class CardGameGUI extends JFrame implements ActionListener {
             displayCards[k].addMouseListener(new MyMouseListener());
             selections[k] = false;
         }
+
+        hintButton = new JButton();
+        hintButton.setText("Hint Hint");
+        panel.add(hintButton);
+
+        hintButton.setBounds(BUTTON_LEFT + 125, BUTTON_TOP, 100, 30);
+        hintButton.addActionListener(this);
+
         replaceButton = new JButton();
         replaceButton.setText("Replace");
         panel.add(replaceButton);
@@ -270,6 +334,14 @@ public class CardGameGUI extends JFrame implements ActionListener {
         winMsg.setText("You win!");
         panel.add(winMsg);
         winMsg.setVisible(false);
+
+        hintsMsg = new JLabel();
+        hintsMsg.setBounds(BUTTON_LEFT + 130, BUTTON_TOP + 30, 100, 30);
+        hintsMsg.setFont(new Font("SansSerif", Font.BOLD, 15));
+        hintsMsg.setForeground(Color.BLACK);
+        hintsMsg.setText(hintsLeft + " hints left");
+        panel.add(hintsMsg);
+        hintsMsg.setVisible(true);
 
         lossMsg = new JLabel();
         lossMsg.setBounds(LABEL_LEFT, LABEL_TOP + LABEL_HEIGHT_INC, 200, 30);
@@ -335,11 +407,13 @@ public class CardGameGUI extends JFrame implements ActionListener {
      */
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(replaceButton)) {
+            this.hintedThisReplace = false;
+
             // Gather all the selected cards.
             List<Integer> selection = new ArrayList<Integer>();
             for (int k = 0; k < board.size(); k++) {
                 if (selections[k]) {
-                    selection.add(new Integer(k));
+                    selection.add(k);
                 }
             }
             // Make sure that the selected cards represent a legal replacement.
@@ -359,18 +433,41 @@ public class CardGameGUI extends JFrame implements ActionListener {
             }
             repaint();
         } else if (e.getSource().equals(restartButton)) {
-            board.newGame();
+            this.hintsLeft = REALMAXHINTS;
+            while (!board.anotherPlayIsPossible()) {
+                board.newGame();
+            }
             getRootPane().setDefaultButton(replaceButton);
             winMsg.setVisible(false);
             lossMsg.setVisible(false);
             if (!board.anotherPlayIsPossible()) {
                 signalLoss();
                 lossMsg.setVisible(true);
+            } else if (e.getModifiers() == 10) {
+                totalGames++;
             }
             for (int i = 0; i < selections.length; i++) {
                 selections[i] = false;
             }
             repaint();
+        } else if (e.getSource().equals(hintButton)) {
+            if (this.hintsLeft > 0) {
+                if (!this.hintedThisReplace) {
+                    this.hintsLeft--;
+                    this.hintedThisReplace = true;
+                }
+
+                // select
+                int[] hintCards = board.hint();
+                for (int i : hintCards) {
+                    //System.out.print(i + " ");
+                    selections[i] = true;
+                }
+                //System.out.println("");
+                repaint();
+            } else if (e.getModifiers() != 10) {
+                signalError();
+            }
         } else {
             signalError();
             return;
@@ -409,8 +506,7 @@ public class CardGameGUI extends JFrame implements ActionListener {
          */
         public void mouseClicked(MouseEvent e) {
             for (int k = 0; k < board.size(); k++) {
-                if (e.getSource().equals(displayCards[k])
-                        && board.cardAt(k) != null) {
+                if (e.getSource().equals(displayCards[k]) && board.cardAt(k) != null) {
                     selections[k] = !selections[k];
                     repaint();
                     return;
