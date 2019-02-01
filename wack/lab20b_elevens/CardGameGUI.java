@@ -202,16 +202,9 @@ public class CardGameGUI extends JFrame implements ActionListener {
 
         for (int k = 0; k < board.size(); k++) {
             String cardImageFileName = imageFileName(board.cardAt(k), selections[k]);
-            URL imageURL = getClass().getResource(cardImageFileName);
-            if (imageURL != null) {
-                ImageIcon boi = new ImageIcon(cardImageFileName);
-                ImageIcon icon = new ImageIcon();
-                displayCards[k].setIcon(boi);
-                displayCards[k].setVisible(true);
-            } else {
-                throw new RuntimeException(
-                        "Card image not found: \"" + cardImageFileName + "\"");
-            }
+            ImageIcon icon = new ImageIcon(cardImageFileName);
+            displayCards[k].setIcon(icon);
+            displayCards[k].setVisible(true);
         }
         statusMsg.setText(board.deckSize()
                 + " undealt cards remain.");
@@ -260,6 +253,7 @@ public class CardGameGUI extends JFrame implements ActionListener {
             public void keyTyped(KeyEvent ke) {
             }
 
+            @Override
             public void keyPressed(KeyEvent ke) {
                 int keyCode = ke.getKeyCode();
                 if (keyCode == KeyEvent.VK_H) {
@@ -449,6 +443,7 @@ public class CardGameGUI extends JFrame implements ActionListener {
             for (int i = 0; i < selections.length; i++) {
                 selections[i] = false;
             }
+            initDisplay();
             repaint();
         } else if (e.getSource().equals(hintButton)) {
             if (this.hintsLeft > 0) {
