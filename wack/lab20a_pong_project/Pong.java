@@ -41,7 +41,7 @@ public class Pong extends Application {
     private Paddle right;
 
     private double apprxmtBallStartingSpeed = 20.2;
-    private double ballAccelerationPerHit = 0.01;
+    private double ballAccelerationPerHit = 0.4;
     private double topPaddleSpeed = 25;
 
     private int paddleSpeed = 22;
@@ -152,29 +152,29 @@ public class Pong extends Application {
         });
         scene.setOnKeyReleased(
                 new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event
-            ) {
-                if (event.getCode() == KeyCode.UP) {
-                    right.stop();
+                    @Override
+                    public void handle(KeyEvent event
+                    ) {
+                        if (event.getCode() == KeyCode.UP) {
+                            right.stop();
+                        }
+                        if (event.getCode() == KeyCode.DOWN) {
+                            right.stop();
+                        }
+                        if (event.getCode() == KeyCode.W) {
+                            left.stop();
+                        }
+                        if (event.getCode() == KeyCode.S) {
+                            left.stop();
+                        }
+                        if (event.getCode() == KeyCode.P) {
+                            paused = !paused;
+                        }
+                        if (event.getCode() == KeyCode.F11) {
+                            primaryStage.setTitle("Pranked");
+                        }
+                    }
                 }
-                if (event.getCode() == KeyCode.DOWN) {
-                    right.stop();
-                }
-                if (event.getCode() == KeyCode.W) {
-                    left.stop();
-                }
-                if (event.getCode() == KeyCode.S) {
-                    left.stop();
-                }
-                if (event.getCode() == KeyCode.P) {
-                    paused = !paused;
-                }
-                if (event.getCode() == KeyCode.F11) {
-                    primaryStage.setTitle("Pranked");
-                }
-            }
-        }
         );
         primaryStage.setTitle(
                 "The game of realizing that you should probably go outside and play some tennis or badminton.");
