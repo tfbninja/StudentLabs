@@ -30,21 +30,18 @@ public class PascalsTriangle {
             }
         }
         String output = "";
-        String space = " ";
-        int largest = String.valueOf(getMax(tempOutput)).length();
-        while (space.length() < largest) {
-            space += " ";
-        }
+        int spaces = 4;
+        String space = "\t";
         for (int r = 0; r < level; r++) {
             for (int sp = 0; sp < level - r; sp++) {
-                output += " ";
+                output += space;
             }
             for (int c = 0; c < level; c++) {
-                int numSpaces = largest - String.valueOf(tempOutput[r][c]).length();
-                output += space;
                 if (tempOutput[r][c] > 0) {
                     output += tempOutput[r][c];
+                    output += space + space;
                 }
+
             }
             output += "\n";
         }
