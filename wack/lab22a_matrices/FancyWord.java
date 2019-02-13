@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class FancyWord {
 
-    private String[][] mat;
+    private static String[][] mat;
 
     public FancyWord(String s) {
         mat = new String[s.length()][s.length()];
@@ -20,15 +20,46 @@ public class FancyWord {
                 }
             }
         }
+        getHourGlass(s);
     }
 
     public static String getHourGlass(String word) {
-        String output = "";
+        mat = new String[word.length()][word.length()];
+        for (int i = 0; i < mat.length; i++) {
+            mat[i] = new String[word.length()];
+            Arrays.fill(mat[i], " ");
+        }
+        for (int r = 0; r < mat.length; r++) {
+            for (int c = 0; c < mat[r].length; c++) {
+                if (r == c) {
+                    mat[r][c] = String.valueOf(word.charAt(r));
+
+                } else if (r + c == word.length() - 1) {
+                    mat[r][c] = String.valueOf(word.charAt(c));
+
+                } else if (r == 0 || r == word.length() - 1) {
+                    mat[r][c] = String.valueOf(word.charAt(c));
+                }
+            }
+        }
+        String output = "\n";
+        for (int r = 0; r < mat.length; r++) {
+            for (int c = 0; c < mat.length; c++) {
+                output += mat[r][c] + " ";
+            }
+            output += "\n";
+        }
         return output;
     }
 
     public String toString() {
-        String output = "";
-        return output + "\n\n";
+        String output = "\n";
+        for (int r = 0; r < mat.length; r++) {
+            for (int c = 0; c < mat.length; c++) {
+                output += mat[r][c] + " ";
+            }
+            output += "\n";
+        }
+        return output;
     }
 }
