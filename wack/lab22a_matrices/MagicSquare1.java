@@ -1,45 +1,59 @@
 package lab22a_matrices;
 
-// A+ Computer Science  -  www.apluscompsci.com
-//Name - 
-//Date -
-//Class -
-//Lab  -
-
-import java.util.Scanner;
-import static java.lang.System.*;
-
 public class MagicSquare1 {
 
-    private int[][] mat;
-
-    //size the matrix and load in the numbers into the matrix
-    //write all nested loop code here in the constructor
-    public MagicSquare1(int size, String numbers) {
+    public static String isMagicSquare(int[][] square) {
+        int downDiag = sumDownDiag(square);
+        int upDiag = sumUpDiag(square);
+        int row = sumRow(square, 0);
+        int col = sumCol(square, 0);
+        boolean isMagic = downDiag == upDiag && row == col && row == downDiag;
+        outer:
+        for (int r = 0; r < square.length; r++) {
+            for (int c = 0; c < square[r].length; c++) {
+                isMagic = isMagic && sumRow(square, r) == row;
+                isMagic = isMagic && sumCol(square, c) == col;
+                if (!isMagic) {
+                    break outer;
+                }
+            }
+        }
+        if (isMagic) {
+            return "MAGIC SQUARE";
+        } else {
+            return "NOT A MAGIC SQUARE";
+        }
     }
 
-    public boolean isMagicSquare() {
-        return false;
+    public static int sumRow(int[][] list, int r) {
+        int sum = 0;
+        for (int i : list[r]) {
+            sum += i;
+        }
+        return sum;
     }
 
-    public int sumRow(int r) {
-        return 0;
+    public static int sumCol(int[][] list, int c) {
+        int sum = 0;
+        for (int[] list1 : list) {
+            sum += list1[c];
+        }
+        return sum;
     }
 
-    public int sumCol(int c) {
-        return 0;
+    public static int sumDownDiag(int[][] list) {
+        int sum = 0;
+        for (int r = 0; r < list.length; r++) {
+            sum += list[r][r];
+        }
+        return sum;
     }
 
-    public int sumDownDiag() {
-        return 0;
-    }
-
-    public int sumUpDiag() {
-        return 0;
-    }
-
-    public String toString() {
-        String output = "";
-        return output;
+    public static int sumUpDiag(int[][] list) {
+        int sum = 0;
+        for (int r = 0; r < list.length; r++) {
+            sum += list[list.length - r - 1][r];
+        }
+        return sum;
     }
 }
