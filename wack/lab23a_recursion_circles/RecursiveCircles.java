@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+package lab23a_recursion_circles;
 
 import javafx.scene.paint.Color;
 import javafx.scene.canvas.Canvas;
@@ -26,11 +21,13 @@ public class RecursiveCircles {
 
     public void drawCircles(Canvas canvas, int x, int y) {
         //base case
-        GraphicsContext graphics = canvas.getGraphicsContext2D();
-        graphics.setStroke(Color.BLUE);
+        if (x < 100) {
+            GraphicsContext graphics = canvas.getGraphicsContext2D();
+            graphics.setStroke(Color.BLUE);
 
-        graphics.strokeOval(90 + x, 90 + y, 20 + x, 20 + x);
+            graphics.strokeOval(90 + x, 90 + y, 20 + x, 20 + x);
 
-        //drawCircles(window, x+10, y+10);
+            drawCircles(canvas, x + 10, y + 10);
+        }
     }
 }
