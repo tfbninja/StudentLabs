@@ -13,6 +13,12 @@ public class Recursion234Runner {
         for (int index = 0; index < answers2.length; index++) {
             System.out.println("Chicken count should be " + answers3[index] + " and is " + RecursionFunTwo.countChickens(lab3TestCases[index]));
         }
+
+        int[] answers4 = {1, 14, 2, 15, 28, 32, 0};
+        long[] lab4TestCases = {7, 77, 1087171, 1077171, 77077, 97171771707797L, 1089651234};
+        for (int index = 0; index < answers2.length; index++) {
+            System.out.println("Seven count should be " + answers4[index] + " and is " + RecursionFunThree.luckySevens(lab4TestCases[index]));
+        }
         //add more test cases
     }
 }

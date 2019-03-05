@@ -1,7 +1,5 @@
 package lab23b_recursion;
 
-import static java.lang.System.*;
-
 public class RecursionFunThree {
 
     /*
@@ -16,8 +14,16 @@ public class RecursionFunThree {
      *
      * the solution to this problem must use recursion
      */
-
     public static int luckySevens(long number) {
-        return 0;
+        if (number / 10 % 10 == 7 && number % 10 == 7) {
+            return number < 100 ? 14 : 14 + luckySevens(number / 100);
+        }
+        if (number % 10 == 7) {
+            return number < 10 ? 1 : 1 + luckySevens(number / 10);
+        }
+        if (number < 10) {
+            return 0;
+        }
+        return luckySevens(number / 10);
     }
 }
