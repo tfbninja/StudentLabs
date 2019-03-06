@@ -1,11 +1,5 @@
 package lab23f_recursion_garbage;
 
-// A+ Computer Science  -  www.apluscompsci.com
-//Name -
-//Date - 
-//Class -
-//Lab  -
-
 import lab22c_tictactoe.Cell;
 import java.awt.Graphics;
 import java.awt.Color;
@@ -51,10 +45,7 @@ public class Grid {
                 Cell spot = grid[r][c];
 
                 //if the current spot is not null
-
-
                 //else
-
             }
         }
         return full;
@@ -64,14 +55,7 @@ public class Grid {
         String output = "";
         //for loop for row
 
-
         //for loop for col
-
-
-
-
-
-
         return output;
     }
 }

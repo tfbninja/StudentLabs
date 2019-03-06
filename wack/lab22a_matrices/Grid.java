@@ -1,7 +1,5 @@
 package lab22a_matrices;
 
-import java.util.Arrays;
-
 public class Grid {
 
     private String[][] grid;

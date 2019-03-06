@@ -1,11 +1,5 @@
 package lab23f_recursion_garbage;
 
-// A+ Computer Science  -  www.apluscompsci.com
-//Name - 
-//Date -
-//Class -
-//Lab  -
-
 import lab10_boolean_Board.Locatable;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -25,40 +19,54 @@ public abstract class Cell implements Locatable {
     }
 
     public Cell(int x, int y) {
+        xPos = x;
+        yPos = y;
+        setWidth(5);
+        setHeight(5);
     }
 
     public Cell(int x, int y, int w, int h) {
+        xPos = x;
+        yPos = y;
+        width = w;
+        height = h;
     }
 
     public void setPos(int x, int y) {
+        xPos = x;
+        yPos = y;
     }
 
     public void setX(int x) {
+        xPos = x;
     }
 
     public void setY(int y) {
+        yPos = y;
     }
 
     public void setWidth(int w) {
+        width = w;
     }
 
     public void setHeight(int h) {
+        height = h;
     }
 
     public int getX() {
-        return 0;
+        return xPos;
     }
 
     public int getY() {
-        return 0;
+        return yPos;
     }
 
     public int getWidth() {
-        return 0;
+        return width;
     }
 
     public int getHeight() {
-        return 0;
+        return height;
     }
 
     public abstract void draw(Graphics window);
