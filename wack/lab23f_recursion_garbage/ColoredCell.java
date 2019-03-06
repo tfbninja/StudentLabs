@@ -55,8 +55,11 @@ public class ColoredCell extends Cell {
     public void draw(Graphics window) {
         window.setFont(new Font("TAHOMA", Font.BOLD, 28));
         window.setColor(getColor());
-        window.drawRect(getX(), getY(), getWidth(), getHeight());
-
+        if (filled) {
+            window.fillRect(getX(), getY(), getWidth(), getHeight());
+        } else {
+            window.drawRect(getX(), getY(), getWidth(), getHeight());
+        }
     }
 
     public String toString() {

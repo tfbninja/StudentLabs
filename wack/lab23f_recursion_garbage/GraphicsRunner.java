@@ -1,11 +1,5 @@
 package lab23f_recursion_garbage;
 
-// A+ Computer Science  -  www.apluscompsci.com
-//Name - 
-//Date -
-//Class -
-//Lab  -
-
 import javax.swing.JFrame;
 
 public class GraphicsRunner extends JFrame {

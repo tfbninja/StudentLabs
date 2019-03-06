@@ -6,23 +6,25 @@ import java.awt.Font;
 
 public class Grid {
 
-    private Cell[][] grid;
+    private ColoredCell[][] grid;
 
     public Grid() {
         setSize(0, 0);
     }
 
     public Grid(int rows, int cols) {
+        setSize(rows, cols);
     }
 
     public void setSize(int rows, int cols) {
-        grid = new Cell[rows][cols];
+        grid = new ColoredCell[rows][cols];
     }
 
-    public void setSpot(int row, int col, Cell val) {
+    public void setSpot(int r, int c, ColoredCell v) {
+        grid[r][c] = v;
     }
 
-    public Cell getSpot(int row, int col) {
+    public ColoredCell getSpot(int row, int col) {
         return grid[row][col];
     }
 
@@ -41,20 +43,28 @@ public class Grid {
         for (int r = 0; r < grid.length; r++) {
             //for loop for col
             for (int c = 0; c < grid[r].length; c++) {
-                Cell spot = grid[r][c];
+                ColoredCell spot = grid[r][c];
 
                 //if the current spot is not null
-                //else
+                if (spot != null) {
+                    spot.draw(window);
+                }
             }
         }
         return full;
     }
 
+    @Override
     public String toString() {
         String output = "";
-        //for loop for row
-
-        //for loop for col
+        for (int r = 0; r < grid.length; r++) {
+            for (int c = 0; c < grid[r].length; c++) {
+                if (grid[r][c] != null) {
+                    output += grid[r][c].toString();
+                }
+                output += "\n";
+            }
+        }
         return output;
     }
 }
