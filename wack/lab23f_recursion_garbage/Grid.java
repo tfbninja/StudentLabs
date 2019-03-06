@@ -1,6 +1,5 @@
 package lab23f_recursion_garbage;
 
-import lab22c_tictactoe.Cell;
 import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Font;
