@@ -19,6 +19,5 @@ public class Recursion234Runner {
         for (int index = 0; index < answers2.length; index++) {
             System.out.println("Seven count should be " + answers4[index] + " and is " + RecursionFunThree.luckySevens(lab4TestCases[index]));
         }
-        //add more test cases
     }
 }
