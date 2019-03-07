@@ -1,10 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+package lab23h_recursion_fractal;
 
-import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -17,8 +12,8 @@ import javafx.stage.Stage;
  */
 public class GraphicsRunner extends Application {
 
-    private static final int WIDTH = 800;
-    private static final int HEIGHT = 600;
+    private static final int WIDTH = 1200;
+    private static final int HEIGHT = 700;
     private static Canvas canvas;
 
     @Override
@@ -29,13 +24,12 @@ public class GraphicsRunner extends Application {
         root.getChildren().add(canvas);
 
         new Gasket().draw(canvas);
-        
+
         Scene scene = new Scene(root, WIDTH, HEIGHT);
 
         primaryStage.setTitle("Serpinski's Gasket");
         primaryStage.setScene(scene);
         primaryStage.show();
-
 
     }
 
@@ -45,6 +39,5 @@ public class GraphicsRunner extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
-    
+
 }
