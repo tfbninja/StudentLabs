@@ -6,7 +6,7 @@ import javafx.scene.paint.Color;
 
 /**
  *
- * @author wkranz
+ * @author Tim Barber
  */
 public class Gasket {
 
