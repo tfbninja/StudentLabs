@@ -30,7 +30,6 @@ public class GraphicsRunner extends Application {
         primaryStage.setTitle("Serpinski's Gasket");
         primaryStage.setScene(scene);
         primaryStage.show();
-
     }
 
     /**
