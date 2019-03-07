@@ -38,5 +38,4 @@ public class GraphicsRunner extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
 }
