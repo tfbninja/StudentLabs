@@ -14,10 +14,10 @@ public class Gasket {
         GraphicsContext graphics = canvas.getGraphicsContext2D();
         int offset = -600;
         double w = canvas.getWidth() - offset;
-        double h = canvas.getHeight() * 1.3;
+        double h = canvas.getHeight() * 1.4;
         double n = 135;
         double x3 = Math.sqrt(3) * n;
-        graphics.fillText("Color: hsb(sin(y1 / x1) * 360, 1, 1)", w / 2, h / 15);
+        graphics.fillText("Color: hsb(sin(y1 / x1) * 360, 1, 1)", w / 2, h / 17);
         rainbowGasket(canvas, w / 2 - n, h / 2 - (x3 / 2), w / 2 + n, h / 2 - (x3 / 2), w / 2, h / 2 + x3 / 2);
         w = canvas.getWidth() + offset;
         graphics.fillText("Color: rgb(rand, rand, rand, 1)", w / 2, h / 15);

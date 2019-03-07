@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 public class GraphicsRunner extends Application {
 
     private static final int WIDTH = 1200;
-    private static final int HEIGHT = 700;
+    private static final int HEIGHT = 600;
     private static Canvas canvas;
 
     @Override
