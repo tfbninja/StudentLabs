@@ -1,20 +1,20 @@
 package lab24e_sortsearch_merge;
 
-// A+ Computer Science  -  www.apluscompsci.com
-//Name -
-//Date -
-//Class -
-//Lab  - 
+import java.util.Arrays;
 
 public class MergeSortRunner {
 
     public static void main(String args[]) {
-        MergeSort.mergeSort(new Comparable[]{9, 5, 3, 2});
+        Comparable[][] tests = {{9, 5, 3, 2}, {19, 52, 3, 2, 7, 21}, {68, 66, 11, 2, 42, 31}};
+        for (Comparable[] t : tests) {
+            //prettyPrint(t);
+            MergeSort.mergeSort(t);
+            //prettyPrint(t);
+            System.out.println("");
+        }
+    }
 
-
-        MergeSort.mergeSort(new Comparable[]{19, 52, 3, 2, 7, 21});
-
-
-        MergeSort.mergeSort(new Comparable[]{68, 66, 11, 2, 42, 31});
+    public static void prettyPrint(Comparable[] c) {
+        System.out.println(Arrays.deepToString(c));
     }
 }

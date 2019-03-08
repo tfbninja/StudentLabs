@@ -1,20 +1,36 @@
 package lab24b_sortsearch_palin;
 
-// A+ Computer Science  -  www.apluscompsci.com
-//Name -
-//Date - 
-//Class -
-//Lab  -
+public class Palin {
 
-import static java.lang.System.*;
-import java.util.ArrayList;
+    private String s;
 
-//define class Palin
-//instance variable - String
-//constructors
-//getLength method - returns an int
-//getWord method - returns a String
-//isPalin method - returns a boolean
+    public Palin(String t) {
+        s = t;
+    }
 
+    public void setWord(String t) {
+        s = t;
+    }
 
-	//toString method - returns a String
+    public int getLength() {
+        return s.length();
+    }
+
+    public String getWord() {
+        return s;
+    }
+
+    public boolean isPalin() {
+        for (int i = 0; i < getLength() / 2; i++) {
+            if (s.charAt(i) != s.charAt(getLength() - (1 + i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return s + " is " + (isPalin() ? "" : "not ") + "a palindrome";
+    }
+}

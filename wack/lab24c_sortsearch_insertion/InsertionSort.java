@@ -1,35 +1,39 @@
 package lab24c_sortsearch_insertion;
 
-// A+ Computer Science  -  www.apluscompsci.com
-//Name - 
-//Date -
-//Class -
-//Lab  -
-
 import java.util.ArrayList;
-import java.util.Collections;
-import static java.lang.System.*;
 
 class InsertionSort {
 
     private ArrayList<String> list;
 
     public InsertionSort() {
+        list = new ArrayList<>();
     }
 
-    //modfiers
     public void add(String word) {
-        int loc = 0;
+        if (list.isEmpty()) {
+            list.add(word);
+            return;
+        }
+        list.add(findInsertLocation(word), word);
     }
 
     private int findInsertLocation(String word) {
-        return -1;
+        int index = 0;
+        for (String s : list) {
+            if (word.compareTo(s) <= 0) {
+                return index;
+            }
+            index++;
+        }
+        return index;
     }
 
     public void remove(String word) {
+        list.remove(word);
     }
 
     public String toString() {
-        return "";
+        return list.toString();
     }
 }
