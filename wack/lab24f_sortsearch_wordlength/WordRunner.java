@@ -1,17 +1,10 @@
 package lab24f_sortsearch_wordlength;
 
-// A+ Computer Science  -  www.apluscompsci.com
-//Name -
-//Date - 
-//Class -
-//Lab  -
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.Collections;
-import static java.lang.System.*;
+import java.util.Scanner;
 
 public class WordRunner {
 
@@ -19,14 +12,14 @@ public class WordRunner {
         Scanner file = new Scanner(new File("words.dat"));
 
         ArrayList<Word> words = new ArrayList<Word>();
-        while (file.hasNext()) {
-            //add in a new Word to words
+        while (file.hasNextLine()) {
+            words.add(new Word(file.nextLine()));
         }
 
-        //sort words
+        Collections.sort(words);
 
-
-        //print out words
-
+        for (Word w : words) {
+            System.out.println(w);
+        }
     }
 }

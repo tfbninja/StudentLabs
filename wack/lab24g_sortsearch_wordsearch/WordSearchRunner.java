@@ -1,9 +1,5 @@
 package lab24g_sortsearch_wordsearch;
 
-
-import java.util.*;
-import java.io.*;
-
 public class WordSearchRunner {
 
     public static void main(String[] args) throws Exception {
